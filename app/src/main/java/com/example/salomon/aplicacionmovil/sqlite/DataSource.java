@@ -14,12 +14,15 @@ public class DataSource {
     public static final String TP_NUMERIC = "real";
 
     //CREACIÓN DE LA TABLA
-
     public static final String CREATE_USUARIO =
         "create table IF NOT EXISTS "+ TB_USUARIO +"(" +
-                Entidad.Usuario.codigousuario                + " " + TP_INT              + " primary key," +
-                Entidad.Usuario.login                        + " " + TP_STRING           + " not null," +
-                Entidad.Usuario.password                     + " " + TP_STRING           + " not null," +
-                Entidad.Usuario.apellidopaterno              + " " + TP_STRING           + " not null," +
-                Entidad.Usuario.nombre                       + " " + TP_STRING           + " not null) ";
+                Entidad.Usuario.codigousuario                + " " + TP_INT              + " PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                Entidad.Usuario.login                        + " " + TP_STRING           + " NOT NULL," +
+                Entidad.Usuario.password                     + " " + TP_STRING           + " NOT NULL," +
+                Entidad.Usuario.apellidopaterno              + " " + TP_STRING           + " NOT NULL," +
+                Entidad.Usuario.nombre                       + " " + TP_STRING           + " NOT NULL) ";
+
+    public static final String DELETE_USUARIO =
+            "DROP TABLE IF EXISTS " + TB_USUARIO;
+
 }

@@ -17,7 +17,7 @@ import com.example.salomon.aplicacionmovil.sqlite.Entidad;
  * Created by Salomon on 18/11/2017.
  */
 
-public class UsuarioDAO {
+public class UsuarioDAO extends DAOException {
     private DBHelper _dbHelper;
     private static final String TAG = "UsuarioDAO";
 
@@ -34,21 +34,18 @@ public class UsuarioDAO {
         try {
             ContentValues values = new ContentValues();
 
-            values.put(Entidad.Usuario.codigousuario, usuario.getCodigoUsuario());
+            //values.put(Entidad.Usuario.codigousuario, usuario.getCodigoUsuario());
             values.put(Entidad.Usuario.login, usuario.getLogin());
             values.put(Entidad.Usuario.password, usuario.getPassword());
             values.put(Entidad.Usuario.apellidopaterno, usuario.getApellidoPaterno());
             values.put(Entidad.Usuario.nombre, usuario.getNombre());
 
             long newRowId;
-            newRowId = db.insert(
-                    DataSource.TB_USUARIO,
-                    null,
-                    values);
+            newRowId = db.insert(DataSource.TB_USUARIO,null, values);
 
             //String[] args = new String[]{correo, clave};
             //db.execSQL("INSERT INTO cuenta(correo, clave) VALUES(?,?)", args);
-            Log.i("UsuarioDAO", "Se insertó");
+            Log.i("UsuarioDAO", "Se insertó"+newRowId);
         } catch (Exception e) {
             throw new DAOException("UsuarioDAO: Error al insertar: " + e.getMessage());
         } finally {

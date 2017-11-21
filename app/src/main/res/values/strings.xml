@@ -10,5 +10,18 @@
 
     <!-- MENU -->
     <string name="menu_text">Menu Principal</string>
-    <string name="title_activity_registrar">RegistrarActivity</string>
+
+    <!-- REGISTER -->
+    <string name="title_activity_registrar">Registrar Nuevo Usuario</string>
+    <string name="register_lbl_id">Identificador</string>
+    <string name="register_lbl_usuario">Usuario</string>
+    <string name="register_lbl_contraseña">Contraseña</string>
+    <string name="register_lbl_nombre">Nombres</string>
+    <string name="register_lbl_apellidos">Apellidos</string>
+    <string name="register_lbl_sexo">Sexo</string>
+    <string-array name="register_array_sexo">
+        <item>Masculino</item>
+        <item>Femenino</item>
+    </string-array>
+
 </resources>

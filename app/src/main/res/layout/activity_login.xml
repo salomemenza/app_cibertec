@@ -107,12 +107,12 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:textSize="17dp"
             android:textColor="@drawable/selector_link"
             android:fontFamily="sans-serif"
             android:text="@string/login_lbl_registrar" />
 
     </LinearLayout>
-
-
 
 </LinearLayout>
