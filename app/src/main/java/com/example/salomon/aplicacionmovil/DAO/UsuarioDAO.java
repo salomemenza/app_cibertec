@@ -39,6 +39,7 @@ public class UsuarioDAO extends DAOException {
             values.put(Entidad.Usuario.password, usuario.getPassword());
             values.put(Entidad.Usuario.apellidopaterno, usuario.getApellidoPaterno());
             values.put(Entidad.Usuario.nombre, usuario.getNombre());
+            values.put(Entidad.Usuario.sexo, usuario.getSexo());
 
             long newRowId;
             newRowId = db.insert(DataSource.TB_USUARIO,null, values);

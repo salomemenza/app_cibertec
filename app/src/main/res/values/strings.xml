@@ -20,8 +20,8 @@
     <string name="register_lbl_apellidos">Apellidos</string>
     <string name="register_lbl_sexo">Sexo</string>
     <string-array name="register_array_sexo">
-        <item>Masculino</item>
-        <item>Femenino</item>
+        <item value="1">Masculino</item>
+        <item value="2">Femenino</item>
     </string-array>
 
 </resources>

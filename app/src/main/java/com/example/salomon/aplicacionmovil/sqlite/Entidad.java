@@ -11,6 +11,7 @@ public class Entidad {
         String password = "password";
         String apellidopaterno = "apellidopaterno";
         String nombre = "nombre";
+        String sexo = "sexo";
     }
 
     public static class Usuario implements ColumnUsuario {

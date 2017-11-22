@@ -10,22 +10,23 @@ public class Usuario {
     private String password;
     private String apellidoPaterno;
     private String nombre;
+    private Integer sexo;
 
     public Usuario() {
     }
 
-    public Usuario(Integer codigoUsuario, String apellidoPaterno, String nombre) {
-        this.codigoUsuario = codigoUsuario;
+    public Usuario(String apellidoPaterno, String nombre) {
         this.apellidoPaterno = apellidoPaterno;
         this.nombre = nombre;
     }
 
-    public Usuario(Integer codigoUsuario, String login, String password, String apellidoPaterno, String nombre) {
+    public Usuario(Integer codigoUsuario,String login, String password, String apellidoPaterno, String nombre,Integer sexo) {
         this.codigoUsuario = codigoUsuario;
         this.login = login;
         this.password = password;
         this.apellidoPaterno = apellidoPaterno;
         this.nombre = nombre;
+        this.sexo = sexo;
     }
 
     public Integer getCodigoUsuario() {
@@ -66,5 +67,13 @@ public class Usuario {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Integer getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Integer sexo) {
+        this.sexo = sexo;
     }
 }

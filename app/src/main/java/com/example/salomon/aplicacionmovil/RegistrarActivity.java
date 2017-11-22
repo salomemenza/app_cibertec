@@ -11,10 +11,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.salomon.aplicacionmovil.DAO.UsuarioDAO;
+import com.example.salomon.aplicacionmovil.Utilities.StringWithTag;
 import com.example.salomon.aplicacionmovil.entidad.Usuario;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class RegistrarActivity extends AppCompatActivity {
     private Spinner spnSexo;
@@ -27,6 +31,11 @@ public class RegistrarActivity extends AppCompatActivity {
     private EditText txtNombres;
     private EditText txtApellidos;
 
+    HashMap<Integer, String> hmSexo = new HashMap<Integer, String>() {{
+        put(0, "Femenino");
+        put(1, "Masculino");
+    }};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,17 +47,23 @@ public class RegistrarActivity extends AppCompatActivity {
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Obtener el identificador del campo Sexo
+                Integer item = spnSexo.getSelectedItemPosition();
+                StringWithTag swt = (StringWithTag) spnSexo.getItemAtPosition(item);
+                Integer idSexo = (Integer) swt.tag;
+
                 Usuario usuarioEntidad = new Usuario();
-                usuarioEntidad.setCodigoUsuario(Integer.parseInt(txtIdentificador.getText().toString()));
+                //usuarioEntidad.setCodigoUsuario(Integer.parseInt(txtIdentificador.getText().toString()));
                 usuarioEntidad.setLogin(txtUsuario.getText().toString());
                 usuarioEntidad.setPassword(txtContraseña.getText().toString());
                 usuarioEntidad.setNombre(txtNombres.getText().toString());
-                usuarioEntidad.setApellidoPaterno(txtApellidos.toString());
+                usuarioEntidad.setApellidoPaterno(txtApellidos.getText().toString());
+                usuarioEntidad.setSexo(idSexo);
 
                 UsuarioDAO usuarioModel = new UsuarioDAO(view.getContext());
                 usuarioModel.insertar(usuarioEntidad);
 
-                Snackbar.make(view, "Se registro correctamente al usuario", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Se registro correctamente al usuario: "+txtNombres.getText().toString(), Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
             }
         });
@@ -70,11 +85,28 @@ public class RegistrarActivity extends AppCompatActivity {
     }
 
     private void poblarSpinner(){
-        String[] array_sexo = getResources().getStringArray(R.array.register_array_sexo);
+        /*String[] array_sexo = getResources().getStringArray(R.array.register_array_sexo);
         ArrayList<String> sexoList = new ArrayList<String>(Arrays.asList(array_sexo));
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, sexoList);
-        spnSexo.setAdapter(adapter);
+        spnSexo.setAdapter(adapter);*/
+
+        /* Create your ArrayList collection using StringWithTag instead of String. */
+        List<StringWithTag> sexoList = new ArrayList<StringWithTag>();
+
+        /* Iterate through your original collection, in this case defined with an Integer key and String value. */
+        for (Map.Entry<Integer, String> entry : hmSexo.entrySet()) {
+            Integer key = entry.getKey();
+            String value = entry.getValue();
+
+            /* Build the StringWithTag List using these keys and values. */
+            sexoList.add(new StringWithTag(value, key));
+        }
+
+        /* Set your ArrayAdapter with the StringWithTag, and when each entry is shown in the Spinner, .toString() is called. */
+        ArrayAdapter<StringWithTag> spinnerAdapter = new ArrayAdapter<StringWithTag>(this, android.R.layout.simple_spinner_item, sexoList);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnSexo.setAdapter(spinnerAdapter);
     }
 
 }

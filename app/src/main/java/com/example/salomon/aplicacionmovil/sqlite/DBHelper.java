@@ -11,7 +11,7 @@ import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
     private static final String NOMBRE_BASE_DATOS = "DB_movil.db";
-    private static final int VERSION_ACTUAL = 2;
+    private static final int VERSION_ACTUAL = 3;
 
     private static final String TAG = "SQLiteHelper";
 

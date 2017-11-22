@@ -20,7 +20,8 @@ public class DataSource {
                 Entidad.Usuario.login                        + " " + TP_STRING           + " NOT NULL," +
                 Entidad.Usuario.password                     + " " + TP_STRING           + " NOT NULL," +
                 Entidad.Usuario.apellidopaterno              + " " + TP_STRING           + " NOT NULL," +
-                Entidad.Usuario.nombre                       + " " + TP_STRING           + " NOT NULL) ";
+                Entidad.Usuario.nombre                       + " " + TP_STRING           + " NOT NULL," +
+                Entidad.Usuario.sexo                         + " " + TP_INT              + " NULL) ";
 
     public static final String DELETE_USUARIO =
             "DROP TABLE IF EXISTS " + TB_USUARIO;
