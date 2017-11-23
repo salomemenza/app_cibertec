@@ -3,9 +3,12 @@ package com.example.salomon.aplicacionmovil;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -31,6 +34,10 @@ public class RegistrarActivity extends AppCompatActivity {
     private EditText txtNombres;
     private EditText txtApellidos;
 
+    private TextInputLayout lytUsuario;
+
+    Animation animShake;
+
     HashMap<Integer, String> hmSexo = new HashMap<Integer, String>() {{
         put(0, "Femenino");
         put(1, "Masculino");
@@ -44,27 +51,11 @@ public class RegistrarActivity extends AppCompatActivity {
         inicarObjetos();
         poblarSpinner();
 
+        animShake = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.alpha);
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Obtener el identificador del campo Sexo
-                Integer item = spnSexo.getSelectedItemPosition();
-                StringWithTag swt = (StringWithTag) spnSexo.getItemAtPosition(item);
-                Integer idSexo = (Integer) swt.tag;
-
-                Usuario usuarioEntidad = new Usuario();
-                //usuarioEntidad.setCodigoUsuario(Integer.parseInt(txtIdentificador.getText().toString()));
-                usuarioEntidad.setLogin(txtUsuario.getText().toString());
-                usuarioEntidad.setPassword(txtContraseña.getText().toString());
-                usuarioEntidad.setNombre(txtNombres.getText().toString());
-                usuarioEntidad.setApellidoPaterno(txtApellidos.getText().toString());
-                usuarioEntidad.setSexo(idSexo);
-
-                UsuarioDAO usuarioModel = new UsuarioDAO(view.getContext());
-                usuarioModel.insertar(usuarioEntidad);
-
-                Snackbar.make(view, "Se registro correctamente al usuario: "+txtNombres.getText().toString(), Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+                submitForm(view);
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -80,6 +71,8 @@ public class RegistrarActivity extends AppCompatActivity {
         txtContraseña = findViewById(R.id.register_txtContraseña);
         txtNombres = findViewById(R.id.register_txtNombres);
         txtApellidos = findViewById(R.id.register_txtApellidos);
+
+        lytUsuario = findViewById(R.id.register_lyt_usuario);
 
         setSupportActionBar(toolbar);
     }
@@ -107,6 +100,42 @@ public class RegistrarActivity extends AppCompatActivity {
         ArrayAdapter<StringWithTag> spinnerAdapter = new ArrayAdapter<StringWithTag>(this, android.R.layout.simple_spinner_item, sexoList);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnSexo.setAdapter(spinnerAdapter);
+    }
+
+    public void submitForm(View view){
+        if (!validateText()) {
+            return;
+        }
+
+        //Obtener el identificador del campo Sexo
+        Integer item = spnSexo.getSelectedItemPosition();
+        StringWithTag swt = (StringWithTag) spnSexo.getItemAtPosition(item);
+        Integer idSexo = (Integer) swt.tag;
+
+        Usuario usuarioEntidad = new Usuario();
+        //usuarioEntidad.setCodigoUsuario(Integer.parseInt(txtIdentificador.getText().toString()));
+        usuarioEntidad.setLogin(txtUsuario.getText().toString());
+        usuarioEntidad.setPassword(txtContraseña.getText().toString());
+        usuarioEntidad.setNombre(txtNombres.getText().toString());
+        usuarioEntidad.setApellidoPaterno(txtApellidos.getText().toString());
+        usuarioEntidad.setSexo(idSexo);
+
+        UsuarioDAO usuarioModel = new UsuarioDAO(view.getContext());
+        usuarioModel.insertar(usuarioEntidad);
+
+        Snackbar.make(view, "Se registro correctamente al usuario: "+txtNombres.getText().toString(), Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+    }
+
+    private boolean validateText() {
+        if (txtUsuario.getText().toString().trim().isEmpty()) {
+            lytUsuario.setError("Ingrese un Usuario");
+            txtUsuario.requestFocus();
+            return false;
+        } else {
+            lytUsuario.setErrorEnabled(false);
+        }
+        return true;
     }
 
 }
