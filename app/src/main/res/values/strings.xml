@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Aplicacion Movil</string>
+    <string name="app_name">CIBERTEC APP</string>
     <!-- LOGIN -->
     <string name="login_button">Iniciar Sesion</string>
     <string name="login_lbl_title">Inicio de Sesion</string>
@@ -24,4 +24,15 @@
         <item value="2">Femenino</item>
     </string-array>
 
+    <!-- MENU DESIGN -->
+    <string name="home_item">Inicio</string>
+    <string name="productos_item">Productos</string>
+    <string name="compras_item">Carrito</string>
+    <string name="ordenes_item">Ordenes</string>
+    <string name="facturas_item">Facturas</string>
+    <string name="log_out_item">Cerrar Sesión</string>
+    <string name="configuracion_item">Configuración</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

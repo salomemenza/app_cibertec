@@ -7,4 +7,10 @@
     <color name="primary">#4CAF50</color>
     <color name="primary_dark">#388E3C</color>
     <color name="accent">#8BC34A</color>
+
+    <!-- MENU DESIGN -->
+    <color name="md_windowBackground">#FFF5F5F5</color>
+    <color name="md_primaryColor">#346D7D</color>
+    <color name="md_primaryDarkColor">#1F515F</color>
+    <color name="md_accentColor">#03A9F4</color>
 </resources>
