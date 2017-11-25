@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CIBERTEC APP</string>
+    <string name="app_name">Cibertec App</string>
     <!-- LOGIN -->
     <string name="login_button">Iniciar Sesion</string>
     <string name="login_lbl_title">Inicio de Sesion</string>

@@ -116,6 +116,66 @@ public class UsuarioDAO extends DAOException {
         return modelo;
     }
 
+    public Usuario obtenerByUser(String xuser) throws DAOException {
+        Log.i("UsuarioDAO", "obtener()");
+        SQLiteDatabase db = _dbHelper.getReadableDatabase();
+        Usuario modelo = new Usuario();
+        // nombre de columnas a obtener
+        String[] projection = {
+                Entidad.Usuario.codigousuario,
+                Entidad.Usuario.login,
+                Entidad.Usuario.password,
+                Entidad.Usuario.apellidopaterno,
+                Entidad.Usuario.nombre
+        };
+
+        // How you want the results sorted in the resulting Cursor
+        String sortOrder = "";
+        //columnas del where;
+        String selection = Entidad.Usuario.login+ " = ?  ";
+        //valores del where;
+        String[] selectionArgs ={ String.valueOf(xuser)};
+        try {
+            //Cursor c = db.rawQuery("select * from usuario where CodigoUsuario=2", null);
+            Cursor c = db.query(
+                    DataSource.TB_USUARIO,  // The table to query
+                    projection,                               // The columns to return
+                    selection,                                // The columns for the WHERE clause
+                    selectionArgs,                            // The values for the WHERE clause
+                    null,                                     // don't group the rows
+                    null,                                     // don't filter by row groups
+                    sortOrder                                 // The sort order
+            );
+
+            if (c.getCount() > 0) {
+                c.moveToFirst();
+                do {
+
+                    int codigoUsuario = c.getInt(c.getColumnIndexOrThrow(Entidad.Usuario.codigousuario));
+                    String login= c.getString(c.getColumnIndexOrThrow(Entidad.Usuario.login));
+                    String password=c.getString(c.getColumnIndexOrThrow(Entidad.Usuario.password));
+                    String apellidoPaterno = c.getString(c.getColumnIndexOrThrow(Entidad.Usuario.apellidopaterno));
+                    String nombre = c.getString(c.getColumnIndexOrThrow(Entidad.Usuario.nombre));
+
+                    modelo.setCodigoUsuario(codigoUsuario);
+                    modelo.setLogin(login);
+                    modelo.setPassword(password);
+                    modelo.setApellidoPaterno(apellidoPaterno);
+                    modelo.setNombre(nombre);
+
+                } while (c.moveToNext());
+            }
+            c.close();
+        } catch (Exception e) {
+            throw new DAOException("UsuarioDAO: Error al obtener: " + e.getMessage());
+        } finally {
+            if (db != null) {
+                db.close();
+            }
+        }
+        return modelo;
+    }
+
     public void eliminar(Integer xcodigo_usuario) throws DAOException {
         Log.i("UsuarioDAO", "eliminar()");
         SQLiteDatabase db = _dbHelper.getWritableDatabase();

@@ -34,7 +34,7 @@ public class RegistrarActivity extends AppCompatActivity {
     private EditText txtNombres;
     private EditText txtApellidos;
 
-    private TextInputLayout lytUsuario;
+    private TextInputLayout lytUsuario, lytContrasenia, lytNombres, lytApellidos;
 
     Animation animShake;
 
@@ -73,6 +73,9 @@ public class RegistrarActivity extends AppCompatActivity {
         txtApellidos = findViewById(R.id.register_txtApellidos);
 
         lytUsuario = findViewById(R.id.register_lyt_usuario);
+        lytContrasenia = findViewById(R.id.register_lyt_contrasenia);
+        lytNombres = findViewById(R.id.register_lyt_nombres);
+        lytApellidos = findViewById(R.id.register_lyt_apellidos);
 
         setSupportActionBar(toolbar);
     }
@@ -103,7 +106,7 @@ public class RegistrarActivity extends AppCompatActivity {
     }
 
     public void submitForm(View view){
-        if (!validateText()) {
+        if (!validateForm()) {
             return;
         }
 
@@ -123,11 +126,12 @@ public class RegistrarActivity extends AppCompatActivity {
         UsuarioDAO usuarioModel = new UsuarioDAO(view.getContext());
         usuarioModel.insertar(usuarioEntidad);
 
+        resetForm();
         Snackbar.make(view, "Se registro correctamente al usuario: "+txtNombres.getText().toString(), Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }
 
-    private boolean validateText() {
+    private boolean validateForm() {
         if (txtUsuario.getText().toString().trim().isEmpty()) {
             lytUsuario.setError("Ingrese un Usuario");
             txtUsuario.requestFocus();
@@ -135,7 +139,38 @@ public class RegistrarActivity extends AppCompatActivity {
         } else {
             lytUsuario.setErrorEnabled(false);
         }
+
+        if (txtContraseña.getText().toString().trim().isEmpty()) {
+            lytContrasenia.setError("Ingrese una contraseña");
+            txtContraseña.requestFocus();
+            return false;
+        } else {
+            lytContrasenia.setErrorEnabled(false);
+        }
+
+        if (txtNombres.getText().toString().trim().isEmpty()) {
+            lytNombres.setError("Ingrese sus nombres");
+            txtNombres.requestFocus();
+            return false;
+        } else {
+            lytNombres.setErrorEnabled(false);
+        }
+
+        if (txtApellidos.getText().toString().trim().isEmpty()) {
+            lytApellidos.setError("Ingrese sus nombres");
+            txtApellidos.requestFocus();
+            return false;
+        } else {
+            lytNombres.setErrorEnabled(false);
+        }
+
         return true;
     }
 
+    private void resetForm(){
+        txtUsuario.setText("");
+        txtContraseña.setText("");
+        txtNombres.setText("");
+        txtApellidos.setText("");
+    }
 }
