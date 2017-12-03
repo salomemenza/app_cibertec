@@ -66,12 +66,6 @@
                     android:hint="@string/login_lbl_usuario"
                     android:inputType="textPersonName" />
             </android.support.design.widget.TextInputLayout>
-            <!--<TextView
-                android:id="@+id/login_lbl_usuario"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/login_lbl_usuario" />-->
 
         </LinearLayout>
 
