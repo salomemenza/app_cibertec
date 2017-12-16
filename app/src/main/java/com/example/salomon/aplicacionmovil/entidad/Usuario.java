@@ -20,7 +20,13 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public Usuario(Integer codigoUsuario,String login, String password, String apellidoPaterno, String nombre,Integer sexo) {
+    public Usuario(String login, String nombre, Integer sexo) {
+        this.login = login;
+        this.nombre = nombre;
+        this.sexo = sexo;
+    }
+
+    public Usuario(Integer codigoUsuario, String login, String password, String apellidoPaterno, String nombre, Integer sexo) {
         this.codigoUsuario = codigoUsuario;
         this.login = login;
         this.password = password;

@@ -49,9 +49,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 // TODO Auto-generated method stub
-                Log.i(TAG, "onClick:    INICAR :P");
-                Intent i = new Intent(getApplicationContext(),MenuDesignActivity.class);
-                Log.i(TAG, "onClick:    INICAR 222 :P");
+                //Intent i = new Intent(getApplicationContext(),MenuDesignActivity.class);
+                Intent i = new Intent(getApplicationContext(),UsuariosActivity.class);
                 startActivity(i);
             }
         });
@@ -95,4 +94,5 @@ public class LoginActivity extends AppCompatActivity {
         lytUsuario = findViewById(R.id.login_lyt_usuario);
         lytPassword = findViewById(R.id.login_lyt_password);
     }
+
 }

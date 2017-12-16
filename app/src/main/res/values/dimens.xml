@@ -1,14 +1,24 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
 
     <!--para spinner Material Design-->
     <dimen name="input_label_vertical_spacing">8dp</dimen>
     <dimen name="input_label_horizontal_spacing">4dp</dimen>
 
-    <!-- MENU DESIGN -->
+    <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="row_padding_vertical">10dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- MENU DESIGN -->
     <dimen name="header_left_padding">16dp</dimen>
     <dimen name="header_height">192dp</dimen>
     <dimen name="perfil_image_size">64dp</dimen>
+
+    <!--para recyclerView-->
+    <dimen name="icon_width_height">40dp</dimen>
+    <dimen name="msg_text_primary">16sp</dimen>
+    <dimen name="msg_text_secondary">14sp</dimen>
+    <dimen name="icon_star">25dp</dimen>
+    <dimen name="icon_text">22dp</dimen>
 </resources>

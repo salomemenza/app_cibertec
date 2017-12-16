@@ -35,4 +35,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--LISTADO DE USUARIOS-->
+    <string name="usuarios_activity_title">Administración de Usuarios</string>
+    <string name="action_settings">Configuración</string>
+    <string name="action_search">Buscar</string>
+    <string name="action_delete">Eliminar</string>
+    <string name="search_text">Buscar por nombre o apellido</string>
 </resources>

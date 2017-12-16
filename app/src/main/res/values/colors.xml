@@ -8,6 +8,15 @@
     <color name="primary_dark">#388E3C</color>
     <color name="accent">#8BC34A</color>
 
+    <!--Para Recycler View-->
+    <color name="subtitle">#999999</color>
+    <color name="title">#222222</color>
+    <color name="icon_tint_normal">#7a7a7a</color>
+    <color name="icon_tint_selected">#fed776</color>
+    <color name="row_activated">#e0e0e0</color>
+    <color name="bg_action_mode">#757575</color>
+    <color name="bg_circle_default">#666666</color>
+
     <!-- MENU DESIGN -->
     <color name="md_windowBackground">#FFF5F5F5</color>
     <color name="md_primaryColor">#346D7D</color>
