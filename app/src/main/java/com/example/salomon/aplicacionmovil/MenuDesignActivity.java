@@ -1,6 +1,7 @@
 package com.example.salomon.aplicacionmovil;
 
 import android.nfc.Tag;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -100,17 +101,20 @@ public class MenuDesignActivity extends AppCompatActivity {
     }
 
     private void selectItem(String title) {
-        // Enviar título como arguemento del fragmento
-        Bundle args = new Bundle();
-        args.putString(PlaceHolderFragment.ARG_SECTION_TITLE, title);
+        // Enviar título como argumento del fragmento
+        Bundle arguments = new Bundle();
+        arguments.putString("placeholderTitle", title);
+        PlaceHolderFragment fragment = PlaceHolderFragment.newInstance(arguments);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(android.R.id.content, fragment, PlaceHolderFragment.TAG);
 
-        Fragment fragment = PlaceHolderFragment.newInstance(title);
-        fragment.setArguments(args);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager
+        // Fragment fragment = PlaceHolderFragment.newInstance(title);
+        //fragment.setArguments(arguments);
+        //FragmentManager fragmentManager = getSupportFragmentManager();
+        /*fragmentManager
                 .beginTransaction()
                 .replace(R.id.main_content, fragment)
-                .commit();
+                .commit();*/
 
         drawerLayout.closeDrawers(); // Cerrar drawer
 

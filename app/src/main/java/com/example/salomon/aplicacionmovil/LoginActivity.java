@@ -49,8 +49,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 // TODO Auto-generated method stub
-                //Intent i = new Intent(getApplicationContext(),MenuDesignActivity.class);
-                Intent i = new Intent(getApplicationContext(),UsuariosActivity.class);
+                Intent i = new Intent(getApplicationContext(),MenuDesignActivity.class);
+                //Intent i = new Intent(getApplicationContext(),UsuariosActivity.class);
                 startActivity(i);
             }
         });

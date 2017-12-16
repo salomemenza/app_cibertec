@@ -15,24 +15,21 @@ public class PlaceHolderFragment extends Fragment {
      * Este argumento del fragmento representa el título de cada
      * sección
      */
-    public static final String ARG_SECTION_TITLE = "section_number";
+    public static final String TAG = "section_number";
 
-
-    /**
-     * Crea una instancia prefabricada de {@link PlaceHolderFragment}
-     *
-     * @param sectionTitle Título usado en el contenido
-     * @return Instancia dle fragmento
-     */
-    public static PlaceHolderFragment newInstance(String sectionTitle) {
+    public static PlaceHolderFragment newInstance(Bundle arguments) {
         PlaceHolderFragment fragment = new PlaceHolderFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_SECTION_TITLE, sectionTitle);
-        fragment.setArguments(args);
+        if( arguments != null ){
+            fragment.setArguments(args);
+        }
+        // args.putString(ARG_SECTION_TITLE, sectionTitle);
+        // fragment.setArguments(args);
         return fragment;
     }
 
     public PlaceHolderFragment() {
+
     }
 
     @Override
@@ -41,7 +38,7 @@ public class PlaceHolderFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_place_holder_fragment, container, false);
 
         // Ubicar argumento en el text view de section_fragment.xml
-        String title = getArguments().getString(ARG_SECTION_TITLE);
+        String title = getArguments().getString(TAG);
         TextView titulo = (TextView) view.findViewById(R.id.title);
         titulo.setText(title);
         return view;
