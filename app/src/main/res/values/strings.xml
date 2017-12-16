@@ -26,7 +26,7 @@
 
     <!-- MENU DESIGN -->
     <string name="home_item">Inicio</string>
-    <string name="productos_item">Productos</string>
+    <string name="usuarios_item">Usuarios</string>
     <string name="compras_item">Carrito</string>
     <string name="ordenes_item">Ordenes</string>
     <string name="facturas_item">Facturas</string>

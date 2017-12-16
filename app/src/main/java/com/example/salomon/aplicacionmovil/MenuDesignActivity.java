@@ -104,22 +104,19 @@ public class MenuDesignActivity extends AppCompatActivity {
         // Enviar título como argumento del fragmento
         Bundle arguments = new Bundle();
         arguments.putString("placeholderTitle", title);
-        PlaceHolderFragment fragment = PlaceHolderFragment.newInstance(arguments);
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(android.R.id.content, fragment, PlaceHolderFragment.TAG);
+        Log.i(TAG,title);
+        /*if( title == "Usuarios" ){
 
-        // Fragment fragment = PlaceHolderFragment.newInstance(title);
-        //fragment.setArguments(arguments);
-        //FragmentManager fragmentManager = getSupportFragmentManager();
-        /*fragmentManager
-                .beginTransaction()
-                .replace(R.id.main_content, fragment)
-                .commit();*/
+        }else{*/
+            PlaceHolderFragment fragment = PlaceHolderFragment.newInstance(arguments);
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.main_content, fragment, PlaceHolderFragment.TAG);
+            ft.commit();
+        //}
+
+        //Log.i(TAG,"HOLAAA AQUI");
 
         drawerLayout.closeDrawers(); // Cerrar drawer
-
-        setTitle(title); // Setear título actual
-
     }
 
 }
