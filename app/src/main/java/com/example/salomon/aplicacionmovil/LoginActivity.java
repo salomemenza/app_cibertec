@@ -1,5 +1,7 @@
 package com.example.salomon.aplicacionmovil;
 
+import android.arch.persistence.room.Room;
+import android.arch.persistence.room.RoomDatabase;
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.salomon.aplicacionmovil.DAO.UsuarioDAO;
 import com.example.salomon.aplicacionmovil.entidad.Usuario;
+import com.example.salomon.aplicacionmovil.entidad.UsuarioR;
+import com.example.salomon.aplicacionmovil.sqlite.RoomDataBase;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "MD";
@@ -36,21 +40,40 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                UsuarioDAO usuarioDAO=new UsuarioDAO(view.getContext());
+                RoomDataBase appDb = RoomDataBase.getAppDb(getApplicationContext());
+                UsuarioR objUsuario = appDb.getUserDao().getRecordByUser(txtUsuario.getText().toString());
+
+                /*UsuarioDAO usuarioDAO=new UsuarioDAO(view.getContext());
                 Usuario objUsuario = usuarioDAO.obtenerByUser(txtUsuario.getText().toString());
 
-                Log.i(TAG, "ob Password : "+objUsuario.getPassword() );
-                Log.i(TAG, "txt Pasword: "+txtPassword.getText().toString());
+                Log.i(TAG, "ob Password : "+objUsuario.getPassword() );*/
+                //Log.i(TAG, "objUsuario: "+objUsuario.toString());
 
-                String pass = txtPassword.getText().toString();
-                if (TextUtils.isEmpty(objUsuario.getPassword()) || !pass.equals(objUsuario.getPassword().toString())){
-                    Toast.makeText(LoginActivity.this, "Contraseña Incorrecta o usuario no registrado", Toast.LENGTH_SHORT).show();
+                if(objUsuario == null){
+                    Toast.makeText(LoginActivity.this, "usuario no registrado", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
+                String pass = txtPassword.getText().toString();
+                if (TextUtils.isEmpty(objUsuario.getPassword()) || !pass.equals(objUsuario.getPassword().toString())){
+                    Toast.makeText(LoginActivity.this, "Contraseña Incorrecta", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                /*RoomDataBase appDb = RoomDataBase.getAppDb(getApplicationContext());
+                UsuarioR usuario = new UsuarioR();
+                usuario.setLogin("admin");
+                usuario.setPassword("123456");
+                usuario.setNombre("admin");
+                usuario.setApellidoPaterno("administrador");
+                usuario.setSexo(1);
+
+                long userId = appDb.getUserDao().insertOnlySingleRecord(usuario);
+                Toast.makeText(LoginActivity.this, "Se registro correctamente al usuario: "+userId , Toast.LENGTH_SHORT).show();*/
+
                 // TODO Auto-generated method stub
-                Intent i = new Intent(getApplicationContext(),MenuDesignActivity.class);
-                //Intent i = new Intent(getApplicationContext(),UsuariosActivity.class);
+                //Intent i = new Intent(getApplicationContext(),MenuDesignActivity.class);
+                Intent i = new Intent(getApplicationContext(),UsuariosActivity.class);
                 startActivity(i);
             }
         });
