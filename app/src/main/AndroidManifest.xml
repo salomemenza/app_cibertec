@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.salomon.aplicacionmovil">
 
-    <!--<uses-permission android:name="android.permission.INTERNET" />-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -11,12 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <!-- android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" -->
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/themeNoAction">
-        </activity>
+            android:theme="@style/themeNoAction" />
         <activity android:name=".MenuActivity" />
         <activity
             android:name=".RegistrarActivity"
@@ -32,23 +30,26 @@
             android:theme="@style/themeNoAction">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter><!---->
+            </intent-filter> <!--  -->
         </activity>
         <activity
             android:name=".MenuDesignActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".UsuariosActivity"
             android:label="@string/usuarios_activity_title"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
-
+                android:resource="@xml/searchable" />
         </activity>
+        <activity
+            android:name=".SolicitarMapaActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".MapaReturnActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
