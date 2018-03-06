@@ -40,6 +40,15 @@ dependencies {
     // glide
     compile 'com.github.bumptech.glide:glide:3.7.0'
 
+<<<<<<< HEAD
     compile "android.arch.persistence.room:runtime:1.0.0"
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
+=======
+    // Google Services
+    implementation 'com.google.android.gms:play-services-location:11.6.2'
+    implementation 'com.google.android.gms:play-services-maps:11.6.2'
+
+    //Solicitud de permisos
+    implementation 'com.karumi:dexter:4.2.0'
+>>>>>>> 683115e8e649c2cba92ccdaac606bedf5ba05376
 }
