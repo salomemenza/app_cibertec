@@ -64,4 +64,5 @@
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
     <string name="play_again">Play Again</string>
 
+    <string name="google_maps_key">AIzaSyAe7tE9nxpJPy4pKBqaBYD3SWki7ViA4qk</string>
 </resources>

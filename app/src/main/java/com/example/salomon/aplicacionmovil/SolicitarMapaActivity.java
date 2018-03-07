@@ -9,6 +9,7 @@ import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -108,11 +109,14 @@ public class SolicitarMapaActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == 1){
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.i("SOlicitarMapa", "requestCode: "+requestCode);
+        if(requestCode == 1){
             if(resultCode == Activity.RESULT_OK){
-                double latitud = data.getDoubleExtra("Latitud",0.00);
-                double longitud = data.getDoubleExtra("Longitud",0.00);
+                String latitud = data.getStringExtra("Latitud");
+                String longitud = data.getStringExtra("Longitud");
+                Log.i(getApplication().getPackageName(), "Latitud: "+latitud);
+                Log.i(getApplication().getPackageName(), "Longitud: "+longitud);
                 etLatitud.setText(String.valueOf(latitud));
                 etLongitud.setText(String.valueOf(longitud));
             }else{

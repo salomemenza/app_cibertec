@@ -55,8 +55,8 @@ public class MapaReturnActivity  extends FragmentActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapa_return);
 
-        /*SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.frMapa);
-        mapFragment.getMapAsync(this);*/
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.frMapa);
+        mapFragment.getMapAsync(this);
 
         mRequestingLocationUpdates = true;
         btnEnviar = findViewById(R.id.btnEnviar);
@@ -64,13 +64,15 @@ public class MapaReturnActivity  extends FragmentActivity implements
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mMyLocationLatLng = new LatLng(mCurrentLocation.getLatitude(),mCurrentLocation.getLongitude());
                 Intent returnIntent = new Intent();
-                returnIntent.putExtra("Latitud",22.1);
-                returnIntent.putExtra("Longitud",22.2);
+                returnIntent.putExtra("Latitud",String.valueOf(mCurrentLocation.getLatitude()));
+                returnIntent.putExtra("Longitud",String.valueOf(mCurrentLocation.getLongitude()));
                 setResult(Activity.RESULT_OK,returnIntent);
                 finish();
             }
         });
+        buildGoogleApiClient();
     }
 
     @Override
