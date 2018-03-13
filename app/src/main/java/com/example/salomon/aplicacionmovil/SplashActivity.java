@@ -69,7 +69,7 @@ public class SplashActivity extends AppCompatActivity {
                         sleep(100);
                         waited += 100;
                     }
-                    Intent intent = new Intent(SplashActivity.this, SolicitarMapaActivity.class);
+                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(intent);
                     SplashActivity.this.finish();
