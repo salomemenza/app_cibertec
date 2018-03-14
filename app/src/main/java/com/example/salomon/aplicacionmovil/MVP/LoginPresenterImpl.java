@@ -15,7 +15,7 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLog
 
     @Override public void validateCredentials(String username, String password) {
         if (loginView != null) {
-            //loginView.showProgress();
+            loginView.showProgress();
         }
 
         loginInteractor.login(username, password, this);
@@ -28,14 +28,14 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLog
     @Override public void onUsernameError() {
         if (loginView != null) {
             loginView.setUsernameError();
-            //loginView.hideProgress();
+            loginView.hideProgress();
         }
     }
 
     @Override public void onPasswordError() {
         if (loginView != null) {
             loginView.setPasswordError();
-            //loginView.hideProgress();
+            loginView.hideProgress();
         }
     }
 

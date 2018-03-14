@@ -5,9 +5,9 @@ package com.example.salomon.aplicacionmovil.MVP;
  */
 
 public interface LoginView {
-    /*void showProgress();
+    void showProgress();
 
-    void hideProgress();*/
+    void hideProgress();
 
     void setUsernameError();
 

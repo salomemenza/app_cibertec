@@ -1,9 +1,11 @@
 package com.example.salomon.aplicacionmovil;
 
+import android.app.ProgressDialog;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -28,6 +30,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     TextView txtRegistrar;
     EditText txtUsuario, txtPassword;
     private LoginPresenter presenter;
+    //Mensajes
+    private ProgressDialog mensajeBuilder;
 
     private TextInputLayout lytUsuario, lytPassword;
 
@@ -121,16 +125,32 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
         lytUsuario = findViewById(R.id.login_lyt_usuario);
         lytPassword = findViewById(R.id.login_lyt_password);
+
+        mensajeBuilder = new ProgressDialog(this);
+    }
+
+    @Override
+    public void showProgress() {
+        mensajeBuilder.setTitle("Validando Información");
+        mensajeBuilder.setMessage("Por favor espere");
+        mensajeBuilder.setCancelable(false);
+        mensajeBuilder.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        mensajeBuilder.show();
+    }
+
+    @Override
+    public void hideProgress() {
+        mensajeBuilder.dismiss();
     }
 
     @Override
     public void setUsernameError() {
-        lytUsuario.setError("Ingrese un Usuario!!");
+        lytUsuario.setError("Ingrese un Usuario");
     }
 
     @Override
     public void setPasswordError() {
-        lytPassword.setError("Ingrese una contraseña!!");
+        lytPassword.setError("Ingrese una contraseña");
     }
 
     @Override

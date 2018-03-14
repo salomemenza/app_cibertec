@@ -25,6 +25,6 @@ public class LoginInteractorImpl implements LoginInteractor{
                     listener.onSuccess();
                 }
             }
-        }, 2000);
+        }, 3000);
     }
 }
