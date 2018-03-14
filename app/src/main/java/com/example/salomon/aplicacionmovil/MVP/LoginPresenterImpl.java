@@ -21,6 +21,11 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLog
         loginInteractor.login(username, password, this);
     }
 
+    @Override
+    public void openRegister() {
+        loginView.goToRegister();
+    }
+
     @Override public void onDestroy() {
         loginView = null;
     }

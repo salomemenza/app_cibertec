@@ -13,7 +13,7 @@ public interface LoginView {
 
     void setPasswordError();
 
-    void showMessage();
+    void goToRegister();
 
     void navigateToHome();
 }

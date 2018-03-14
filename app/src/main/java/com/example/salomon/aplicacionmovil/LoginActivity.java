@@ -79,8 +79,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         txtRegistrar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent iRegistrar = new Intent(getApplicationContext(),RegistrarActivity.class);
-                startActivity(iRegistrar);
+                presenter.openRegister();
             }
         });
     }
@@ -95,26 +94,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     long userId = appDb.getUserDao().insertOnlySingleRecord(usuario);
     Toast.makeText(LoginActivity.this, "Se registro correctamente al usuario: "+userId , Toast.LENGTH_SHORT).show();*/
-
-    private boolean validateForm() {
-        if (txtUsuario.getText().toString().trim().isEmpty()) {
-            lytUsuario.setError("Ingrese un Usuario");
-            txtUsuario.requestFocus();
-            return false;
-        } else {
-            lytUsuario.setErrorEnabled(false);
-        }
-
-        if (txtPassword.getText().toString().trim().isEmpty()) {
-            lytPassword.setError("Ingrese una contraseña");
-            txtPassword.requestFocus();
-            return false;
-        } else {
-            lytPassword.setErrorEnabled(false);
-        }
-
-        return true;
-    }
 
     private void constructObject(){
         btnIniciar = findViewById(R.id.login_btn_inicio);
@@ -146,16 +125,19 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     public void setUsernameError() {
         lytUsuario.setError("Ingrese un Usuario");
+        txtUsuario.requestFocus();
     }
 
     @Override
     public void setPasswordError() {
         lytPassword.setError("Ingrese una contraseña");
+        txtPassword.requestFocus();
     }
 
     @Override
-    public void showMessage() {
-
+    public void goToRegister() {
+        Intent iRegistrar = new Intent(getApplicationContext(),RegistrarActivity.class);
+        startActivity(iRegistrar);
     }
 
     @Override
@@ -163,5 +145,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         //Intent i = new Intent(getApplicationContext(),MenuDesignActivity.class);
         Intent i = new Intent(getApplicationContext(),UsuariosActivity.class);
         startActivity(i);
+        finish();
     }
 }

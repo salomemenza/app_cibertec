@@ -7,5 +7,7 @@ package com.example.salomon.aplicacionmovil.MVP;
 public interface LoginPresenter {
     void validateCredentials(String username, String password);
 
+    void openRegister();
+
     void onDestroy();
 }
