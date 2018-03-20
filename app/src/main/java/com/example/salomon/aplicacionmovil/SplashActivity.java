@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import com.example.salomon.aplicacionmovil.DAO.UsuarioDAO;
 import com.example.salomon.aplicacionmovil.entidad.Usuario;
+import com.example.salomon.aplicacionmovil.entidad.UsuarioR;
+import com.example.salomon.aplicacionmovil.sqlite.RoomDataBase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -93,11 +95,26 @@ public class SplashActivity extends AppCompatActivity {
         for(HashMap<String,String> map: listaUsuario){
             String usuario = map.get("usuario");
 
-            UsuarioDAO usuarioModel = new UsuarioDAO(this);
-            Usuario objUsuario = usuarioModel.obtenerByUser(usuario);
+            /*UsuarioDAO usuarioModel = new UsuarioDAO(this);
+            Usuario objUsuario = usuarioModel.obtenerByUser(usuario);*/
 
-            if (TextUtils.isEmpty(objUsuario.getLogin())){
-                Usuario usuarioEntidad = new Usuario();
+            RoomDataBase appDb = RoomDataBase.getAppDb(getApplicationContext());
+            UsuarioR objUsuario = appDb.getUserDao().getRecordByUser(usuario);
+
+            if (objUsuario == null){
+
+                //RoomDataBase appDb = RoomDataBase.getAppDb(getApplicationContext());
+                UsuarioR UsuarioRoom = new UsuarioR();
+                UsuarioRoom.setLogin(usuario);
+                UsuarioRoom.setPassword(map.get("password"));
+                UsuarioRoom.setNombre(map.get("nombre"));
+                UsuarioRoom.setApellidoPaterno(map.get("paterno"));
+                UsuarioRoom.setSexo(Integer.parseInt(map.get("sexo")));
+
+                long userId = appDb.getUserDao().insertOnlySingleRecord(UsuarioRoom);
+                Toast.makeText(SplashActivity.this, "Se registro correctamente al usuario: "+userId , Toast.LENGTH_SHORT).show();
+
+                /*Usuario usuarioEntidad = new Usuario();
                 usuarioEntidad.setLogin(usuario);
 
                 usuarioEntidad.setLogin(usuario);
@@ -107,7 +124,7 @@ public class SplashActivity extends AppCompatActivity {
                 usuarioEntidad.setSexo(Integer.parseInt(map.get("sexo")));
 
                 usuarioModel.insertar(usuarioEntidad);
-                Toast.makeText(SplashActivity.this, "Se registro correctamente al usuario: "+ usuario, Toast.LENGTH_SHORT).show();
+                Toast.makeText(SplashActivity.this, "Se registro correctamente al usuario: "+ usuario, Toast.LENGTH_SHORT).show();*/
             }
         }
     }

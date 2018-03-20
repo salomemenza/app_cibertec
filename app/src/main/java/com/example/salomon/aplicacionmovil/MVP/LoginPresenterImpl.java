@@ -1,5 +1,7 @@
 package com.example.salomon.aplicacionmovil.MVP;
 
+import android.content.Context;
+
 /**
  * Created by desarrollo6 on 13/03/2018.
  */
@@ -48,5 +50,10 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLog
         if (loginView != null) {
             loginView.navigateToHome();
         }
+    }
+
+    @Override
+    public Context getContext() {
+        return loginView.obtenetContexto();
     }
 }

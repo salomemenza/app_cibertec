@@ -3,6 +3,7 @@ package com.example.salomon.aplicacionmovil;
 import android.app.ProgressDialog;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
@@ -84,17 +85,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         });
     }
 
-    /*RoomDataBase appDb = RoomDataBase.getAppDb(getApplicationContext());
-    UsuarioR usuario = new UsuarioR();
-    usuario.setLogin("admin");
-    usuario.setPassword("123456");
-    usuario.setNombre("admin");
-    usuario.setApellidoPaterno("administrador");
-    usuario.setSexo(1);
-
-    long userId = appDb.getUserDao().insertOnlySingleRecord(usuario);
-    Toast.makeText(LoginActivity.this, "Se registro correctamente al usuario: "+userId , Toast.LENGTH_SHORT).show();*/
-
     private void constructObject(){
         btnIniciar = findViewById(R.id.login_btn_inicio);
         txtRegistrar = findViewById(R.id.login_lbl_registrar);
@@ -146,5 +136,10 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         Intent i = new Intent(getApplicationContext(),UsuariosActivity.class);
         startActivity(i);
         finish();
+    }
+
+    @Override
+    public Context obtenetContexto() {
+        return getApplicationContext();
     }
 }
