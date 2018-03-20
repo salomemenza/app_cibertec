@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     Button btnIniciar;
     TextView txtRegistrar;
     EditText txtUsuario, txtPassword;
+    CheckBox chkRecordar;
     private LoginPresenter presenter;
     //Mensajes
     private ProgressDialog mensajeBuilder;
@@ -85,6 +87,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     private void constructObject(){
         btnIniciar = findViewById(R.id.login_btn_inicio);
         txtRegistrar = findViewById(R.id.login_lbl_registrar);
@@ -94,6 +101,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
         lytUsuario = findViewById(R.id.login_lyt_usuario);
         lytPassword = findViewById(R.id.login_lyt_password);
+
+        chkRecordar = findViewById(R.id.chkRecordar);
 
         mensajeBuilder = new ProgressDialog(this);
     }
@@ -131,6 +140,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     @Override
+    public void rememberUser() {
+        presenter.recordarUsuario(chkRecordar.isChecked(),txtUsuario.getText().toString());
+    }
+
+    @Override
     public void navigateToHome() {
         //Intent i = new Intent(getApplicationContext(),MenuDesignActivity.class);
         Intent i = new Intent(getApplicationContext(),UsuariosActivity.class);
@@ -142,4 +156,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     public Context obtenetContexto() {
         return getApplicationContext();
     }
+
+
 }

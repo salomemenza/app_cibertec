@@ -99,6 +99,20 @@
             </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
+        <LinearLayout
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/chkRecordar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/login_lbl_recordar"
+                android:theme="@style/CheckboxMaterial" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

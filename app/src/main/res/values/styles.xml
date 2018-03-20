@@ -32,7 +32,6 @@
         <item name="android:paddingRight">@dimen/input_label_horizontal_spacing</item>
     </style>
 
-
     <!--<style name="Theme.JanusShop" parent="Base.AppTheme"/>-->
     <style name="Base.AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/md_primaryColor</item>
@@ -42,5 +41,11 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="CheckboxMaterial" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/primary</item>
+        <item name="colorControlActivated">@color/primary_dark</item>
+    </style>
+
 
 </resources>

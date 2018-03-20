@@ -17,6 +17,8 @@ public interface LoginView {
 
     void goToRegister();
 
+    void rememberUser();
+
     void navigateToHome();
 
     Context obtenetContexto();

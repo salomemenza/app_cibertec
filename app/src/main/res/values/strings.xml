@@ -65,4 +65,5 @@
     <string name="play_again">Play Again</string>
 
     <string name="google_maps_key">AIzaSyAe7tE9nxpJPy4pKBqaBYD3SWki7ViA4qk</string>
+    <string name="login_lbl_recordar">Recordar Usuario</string>
 </resources>

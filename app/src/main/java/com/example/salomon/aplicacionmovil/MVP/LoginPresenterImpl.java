@@ -28,6 +28,11 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLog
         loginView.goToRegister();
     }
 
+    @Override
+    public void recordarUsuario(boolean recordar, String username) {
+    
+    }
+
     @Override public void onDestroy() {
         loginView = null;
     }
@@ -48,6 +53,7 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLog
 
     @Override public void onSuccess() {
         if (loginView != null) {
+            loginView.rememberUser();
             loginView.navigateToHome();
         }
     }

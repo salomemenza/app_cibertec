@@ -4,6 +4,7 @@ import android.app.Application;
 import android.os.Handler;
 import android.text.TextUtils;
 
+import com.example.salomon.aplicacionmovil.entidad.RecordarEntidad;
 import com.example.salomon.aplicacionmovil.entidad.UsuarioR;
 import com.example.salomon.aplicacionmovil.sqlite.RoomDataBase;
 
@@ -56,5 +57,23 @@ public class LoginInteractorImpl implements LoginInteractor{
         }
 
         listener.onSuccess();
+    }
+
+    @Override
+    public void recordarUsuario(Boolean recordar, String username, final LoginInteractor.OnLoginFinishedListener listener) {
+        RoomDataBase appDb = RoomDataBase.getAppDb(listener.getContext());
+        RecordarEntidad recordarReg = appDb.getRecordarRoom().getRecordByUser(username);
+
+        RecordarEntidad recordarSingle = new RecordarEntidad();
+        recordarSingle.setValor(recordar);
+        recordarSingle.setUsuario(username);
+
+        if(recordarReg != null){
+            //Actualizar
+            appDb.getRecordarRoom().updateRecord(recordarSingle);
+        }else{
+            //Crear
+            appDb.getRecordarRoom().insertOnlySingleRecord(recordarSingle);
+        }
     }
 }

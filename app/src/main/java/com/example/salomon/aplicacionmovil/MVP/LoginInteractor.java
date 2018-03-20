@@ -20,4 +20,5 @@ public interface LoginInteractor {
 
     void login(String username, String password, OnLoginFinishedListener listener);
 
+    void recordarUsuario(Boolean recordar, String username, OnLoginFinishedListener listener);
 }

@@ -9,5 +9,7 @@ public interface LoginPresenter {
 
     void openRegister();
 
+    void recordarUsuario(boolean recordar, String username);
+
     void onDestroy();
 }
