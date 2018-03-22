@@ -3,6 +3,7 @@ package com.example.salomon.aplicacionmovil.MVP;
 import android.app.Application;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.example.salomon.aplicacionmovil.entidad.RecordarEntidad;
 import com.example.salomon.aplicacionmovil.entidad.UsuarioR;
@@ -45,14 +46,12 @@ public class LoginInteractorImpl implements LoginInteractor{
         UsuarioR objUsuario = appDb.getUserDao().getRecordByUser(username);
 
         if(objUsuario == null){
-            listener.onUsernameError();
-            //Toast.makeText(LoginActivity.this, "usuario no registrado", Toast.LENGTH_SHORT).show();
+            listener.onErrorLogin("Usuario no se encuentra registrado");
             return;
         }
 
-        if (password.equals(objUsuario.getPassword())){
-            //Toast.makeText(LoginActivity.this, "Contraseña Incorrecta", Toast.LENGTH_SHORT).show();
-            listener.onPasswordError();
+        if (!password.equals(objUsuario.getPassword())){
+            listener.onErrorLogin("La contraseña es incorrecta");
             return;
         }
 
@@ -61,6 +60,7 @@ public class LoginInteractorImpl implements LoginInteractor{
 
     @Override
     public void recordarUsuario(Boolean recordar, String username, final LoginInteractor.OnLoginFinishedListener listener) {
+        Log.i("RecordarUsuario: ","Se recordara al usuario");
         RoomDataBase appDb = RoomDataBase.getAppDb(listener.getContext());
         RecordarEntidad recordarReg = appDb.getRecordarRoom().getRecordByUser(username);
 
@@ -68,12 +68,23 @@ public class LoginInteractorImpl implements LoginInteractor{
         recordarSingle.setValor(recordar);
         recordarSingle.setUsuario(username);
 
+        appDb.getRecordarRoom().resetRecordar();
         if(recordarReg != null){
             //Actualizar
-            appDb.getRecordarRoom().updateRecord(recordarSingle);
+            appDb.getRecordarRoom().updateRecord(username,recordar);
         }else{
             //Crear
             appDb.getRecordarRoom().insertOnlySingleRecord(recordarSingle);
+        }
+    }
+
+    @Override
+    public void getUserRemenber(final LoginInteractor.OnLoginFinishedListener listener) {
+        RoomDataBase appDb = RoomDataBase.getAppDb(listener.getContext());
+        RecordarEntidad recordarReg = appDb.getRecordarRoom().getUserRemember();
+        if(recordarReg != null){
+            //Actualizar
+            listener.onRememberUser(recordarReg.getUsuario());
         }
     }
 }

@@ -15,10 +15,16 @@ public interface LoginInteractor {
 
         void onSuccess();
 
+        void onErrorLogin(String mensaje);
+
+        void onRememberUser(String username);
+
         Context getContext();
     }
 
     void login(String username, String password, OnLoginFinishedListener listener);
 
     void recordarUsuario(Boolean recordar, String username, OnLoginFinishedListener listener);
+
+    void getUserRemenber(OnLoginFinishedListener listener);
 }

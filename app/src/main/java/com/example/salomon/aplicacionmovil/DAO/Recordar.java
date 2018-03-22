@@ -30,9 +30,15 @@ public interface Recordar {
     @Query("SELECT * FROM RecordarEntidad WHERE usuario =:usuario")
     RecordarEntidad getRecordByUser(String usuario);
 
-    @Update(onConflict = OnConflictStrategy.REPLACE)
-    void updateRecord(RecordarEntidad recordar);
+    @Query("SELECT * FROM RecordarEntidad WHERE valor=1")
+    RecordarEntidad getUserRemember();
+
+    @Query("UPDATE RecordarEntidad SET valor =:valor WHERE usuario =:usuario")
+    void updateRecord(String usuario, Boolean valor);
 
     @Delete
     void deleteRecord(RecordarEntidad recordar);
+
+    @Query("UPDATE RecordarEntidad SET valor = 0")
+    void resetRecordar();
 }

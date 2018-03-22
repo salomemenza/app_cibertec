@@ -11,5 +11,7 @@ public interface LoginPresenter {
 
     void recordarUsuario(boolean recordar, String username);
 
+    void obtenerRecuerdo();
+
     void onDestroy();
 }

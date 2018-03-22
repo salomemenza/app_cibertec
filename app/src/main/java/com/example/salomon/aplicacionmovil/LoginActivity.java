@@ -1,10 +1,12 @@
 package com.example.salomon.aplicacionmovil;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,32 +52,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         btnIniciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*if (!validateForm()) {
-                    return;
-                }
-
-                RoomDataBase appDb = RoomDataBase.getAppDb(getApplicationContext());
-                UsuarioR objUsuario = appDb.getUserDao().getRecordByUser(txtUsuario.getText().toString());
-
-                //UsuarioDAO usuarioDAO=new UsuarioDAO(view.getContext());
-                //Usuario objUsuario = usuarioDAO.obtenerByUser(txtUsuario.getText().toString());
-
-                if(objUsuario == null){
-                    Toast.makeText(LoginActivity.this, "usuario no registrado", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                String pass = txtPassword.getText().toString();
-                if (TextUtils.isEmpty(objUsuario.getPassword()) || !pass.equals(objUsuario.getPassword().toString())){
-                    Toast.makeText(LoginActivity.this, "Contraseña Incorrecta", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                // TODO Auto-generated method stub
-                //Intent i = new Intent(getApplicationContext(),MenuDesignActivity.class);
-                Intent i = new Intent(getApplicationContext(),UsuariosActivity.class);
-                startActivity(i);*/
-
                 presenter.validateCredentials(txtUsuario.getText().toString(), txtPassword.getText().toString());
             }
         });
@@ -85,6 +62,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
                 presenter.openRegister();
             }
         });
+
+        presenter.obtenerRecuerdo();
     }
 
     @Override
@@ -153,9 +132,21 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     @Override
+    public void showMessage(String mensaje) {
+        Log.i("ShowMessage: ",mensaje);
+        /*View main = findViewById(R.id.login_lyt_main);
+        Snackbar.make(main,mensaje,Snackbar.LENGTH_SHORT);*/
+        Toast.makeText(LoginActivity.this, mensaje, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showUser(String username) {
+        Log.i("se seteara el usuario: ",username);
+        txtUsuario.setText(username);
+    }
+
+    @Override
     public Context obtenetContexto() {
         return getApplicationContext();
     }
-
-
 }

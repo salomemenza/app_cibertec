@@ -30,7 +30,12 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLog
 
     @Override
     public void recordarUsuario(boolean recordar, String username) {
-    
+        loginInteractor.recordarUsuario(recordar,username,this);
+    }
+
+    @Override
+    public void obtenerRecuerdo() {
+        loginInteractor.getUserRemenber(this);
     }
 
     @Override public void onDestroy() {
@@ -56,6 +61,17 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLog
             loginView.rememberUser();
             loginView.navigateToHome();
         }
+    }
+
+    @Override
+    public void onErrorLogin(String mensaje) {
+        loginView.hideProgress();
+        loginView.showMessage(mensaje);
+    }
+
+    @Override
+    public void onRememberUser(String username) {
+        loginView.showUser(username);
     }
 
     @Override

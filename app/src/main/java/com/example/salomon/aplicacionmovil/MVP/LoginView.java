@@ -21,5 +21,9 @@ public interface LoginView {
 
     void navigateToHome();
 
+    void showMessage(String mensaje);
+
+    void showUser(String username);
+
     Context obtenetContexto();
 }
