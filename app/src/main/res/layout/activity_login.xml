@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:theme="@style/themeNoAction"
-    tools:context="com.example.salomon.aplicacionmovil.LoginActivity">
+    tools:context="com.example.salomon.aplicacionmovil.view.activity.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

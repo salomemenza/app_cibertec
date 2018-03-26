@@ -18,18 +18,18 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".view.activity.LoginActivity"
             android:theme="@style/themeNoAction"></activity>
 
        <activity android:name=".MenuActivity" />
         <activity
             android:name=".RegistrarActivity"
             android:label="@string/title_activity_registrar"
-            android:parentActivityName=".LoginActivity"
+            android:parentActivityName=".view.activity.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.salomon.aplicacionmovil.LoginActivity" />
+                android:value="com.example.salomon.aplicacionmovil.view.activity.LoginActivity" />
         </activity>
         <activity
             android:name=".SplashActivity"

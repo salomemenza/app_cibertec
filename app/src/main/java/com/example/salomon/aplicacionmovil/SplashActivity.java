@@ -1,15 +1,10 @@
 package com.example.salomon.aplicacionmovil;
 
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PixelFormat;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -17,14 +12,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.salomon.aplicacionmovil.DAO.UsuarioDAO;
-import com.example.salomon.aplicacionmovil.entidad.Usuario;
 import com.example.salomon.aplicacionmovil.entidad.UsuarioR;
 import com.example.salomon.aplicacionmovil.sqlite.RoomDataBase;
+import com.example.salomon.aplicacionmovil.view.activity.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class SplashActivity extends AppCompatActivity {
     private ArrayList<HashMap<String,String>> listaUsuario = new ArrayList<HashMap<String, String>>();
