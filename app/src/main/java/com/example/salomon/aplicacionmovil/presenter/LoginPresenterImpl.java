@@ -1,12 +1,15 @@
-package com.example.salomon.aplicacionmovil.MVP;
+package com.example.salomon.aplicacionmovil.presenter;
 
 import android.content.Context;
+
+import com.example.salomon.aplicacionmovil.MVP.LoginInteractor;
+import com.example.salomon.aplicacionmovil.MVP.LoginInteractorImpl;
 
 /**
  * Created by desarrollo6 on 13/03/2018.
  */
 
-public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLoginFinishedListener{
+public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLoginFinishedListener {
     private LoginView loginView;
     private LoginInteractor loginInteractor;
 

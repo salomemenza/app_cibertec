@@ -12,9 +12,9 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.salomon.aplicacionmovil.MVP.LoginPresenter;
-import com.example.salomon.aplicacionmovil.MVP.LoginPresenterImpl;
-import com.example.salomon.aplicacionmovil.MVP.LoginView;
+import com.example.salomon.aplicacionmovil.presenter.LoginPresenter;
+import com.example.salomon.aplicacionmovil.presenter.LoginPresenterImpl;
+import com.example.salomon.aplicacionmovil.presenter.LoginView;
 import com.example.salomon.aplicacionmovil.R;
 import com.example.salomon.aplicacionmovil.RegistrarActivity;
 import com.example.salomon.aplicacionmovil.UsuariosActivity;

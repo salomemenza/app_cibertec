@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.salomon.aplicacionmovil.Utilities.PrefManager;
+import com.example.salomon.aplicacionmovil.view.activity.SplashActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
 

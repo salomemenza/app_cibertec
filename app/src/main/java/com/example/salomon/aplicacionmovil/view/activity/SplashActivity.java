@@ -1,4 +1,4 @@
-package com.example.salomon.aplicacionmovil;
+package com.example.salomon.aplicacionmovil.view.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,9 +12,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.salomon.aplicacionmovil.R;
 import com.example.salomon.aplicacionmovil.entidad.UsuarioR;
 import com.example.salomon.aplicacionmovil.sqlite.RoomDataBase;
-import com.example.salomon.aplicacionmovil.view.activity.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;

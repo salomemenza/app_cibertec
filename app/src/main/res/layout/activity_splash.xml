@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/splash"
-    tools:context="com.example.salomon.aplicacionmovil.SplashActivity">
+    tools:context="com.example.salomon.aplicacionmovil.view.activity.SplashActivity">
 
     <LinearLayout
         android:id="@+id/splashLyContent"

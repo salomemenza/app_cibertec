@@ -32,7 +32,7 @@
                 android:value="com.example.salomon.aplicacionmovil.view.activity.LoginActivity" />
         </activity>
         <activity
-            android:name=".SplashActivity"
+            android:name=".view.activity.SplashActivity"
             android:theme="@style/themeNoAction">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
