@@ -1,22 +1,13 @@
-package com.example.salomon.aplicacionmovil.MVP;
-
-import android.app.Application;
-import android.os.Handler;
-import android.text.TextUtils;
-import android.util.Log;
-
-import com.example.salomon.aplicacionmovil.entidad.RecordarEntidad;
-import com.example.salomon.aplicacionmovil.entidad.UsuarioR;
-import com.example.salomon.aplicacionmovil.sqlite.RoomDataBase;
+package com.example.salomon.aplicacionmovil.interactor;
 
 /**
  * Created by desarrollo6 on 13/03/2018.
  */
 
-public class LoginInteractorImpl implements LoginInteractor{
-    @Override
+public class LoginInteractorImpl /*implements LoginInteractor*/ {
+    /*@Override
     public void login(final String username, final String password, final LoginInteractor.OnLoginFinishedListener listener) {
-        /*new Handler().postDelayed(new Runnable() {
+        new Handler().postDelayed(new Runnable() {
             @Override public void run() {
                 boolean error = false;
                 if (TextUtils.isEmpty(password)){
@@ -31,7 +22,7 @@ public class LoginInteractorImpl implements LoginInteractor{
                     listener.onSuccess();
                 }
             }
-        }, 3000);*/
+        }, 3000);
 
         if (TextUtils.isEmpty(password)){
             listener.onPasswordError();
@@ -86,5 +77,5 @@ public class LoginInteractorImpl implements LoginInteractor{
             //Actualizar
             listener.onRememberUser(recordarReg.getUsuario());
         }
-    }
+    }*/
 }

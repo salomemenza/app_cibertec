@@ -1,4 +1,4 @@
-package com.example.salomon.aplicacionmovil.DAO;
+package com.example.salomon.aplicacionmovil.data.room;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
@@ -7,8 +7,10 @@ import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
-import com.example.salomon.aplicacionmovil.entidad.UsuarioR;
+import com.example.salomon.aplicacionmovil.data.model.UsuarioR;
 import java.util.List;
+
+import io.reactivex.Observable;
 
 /**
  * Created by desarrollo6 on 19/02/2018.
@@ -32,7 +34,7 @@ public interface UsuarioDaoR {
     UsuarioR getSingleRecord(int id);
 
     @Query("SELECT * FROM UsuarioR WHERE login =:v_login")
-    UsuarioR getRecordByUser(String v_login);
+    Observable<List<UsuarioR>> getRecordByUser(String v_login);
 
     @Update (onConflict = OnConflictStrategy.REPLACE)
     void updateRecord(UsuarioR university);

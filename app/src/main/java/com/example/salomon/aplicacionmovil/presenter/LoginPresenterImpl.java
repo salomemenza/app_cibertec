@@ -2,47 +2,20 @@ package com.example.salomon.aplicacionmovil.presenter;
 
 import android.content.Context;
 
-import com.example.salomon.aplicacionmovil.MVP.LoginInteractor;
-import com.example.salomon.aplicacionmovil.MVP.LoginInteractorImpl;
+import com.example.salomon.aplicacionmovil.interactor.LoginInteractor;
+import com.example.salomon.aplicacionmovil.interactor.LoginInteractorImpl;
 
 /**
  * Created by desarrollo6 on 13/03/2018.
  */
 
-public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLoginFinishedListener {
-    private LoginView loginView;
+public class LoginPresenterImpl /*implements LoginInteractor.OnLoginFinishedListener*/ {
+    /*private LoginView loginView;
     private LoginInteractor loginInteractor;
 
     public LoginPresenterImpl(LoginView loginView) {
         this.loginView = loginView;
         this.loginInteractor = new LoginInteractorImpl();
-    }
-
-    @Override public void validateCredentials(String username, String password) {
-        if (loginView != null) {
-            loginView.showProgress();
-        }
-
-        loginInteractor.login(username, password, this);
-    }
-
-    @Override
-    public void openRegister() {
-        loginView.goToRegister();
-    }
-
-    @Override
-    public void recordarUsuario(boolean recordar, String username) {
-        loginInteractor.recordarUsuario(recordar,username,this);
-    }
-
-    @Override
-    public void obtenerRecuerdo() {
-        loginInteractor.getUserRemenber(this);
-    }
-
-    @Override public void onDestroy() {
-        loginView = null;
     }
 
     @Override public void onUsernameError() {
@@ -80,5 +53,5 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLog
     @Override
     public Context getContext() {
         return loginView.obtenetContexto();
-    }
+    }*/
 }

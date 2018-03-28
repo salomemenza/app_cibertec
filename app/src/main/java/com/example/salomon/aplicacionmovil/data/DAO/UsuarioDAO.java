@@ -1,4 +1,4 @@
-package com.example.salomon.aplicacionmovil.DAO;
+package com.example.salomon.aplicacionmovil.data.DAO;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,14 +7,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.util.Log;
 
-import com.example.salomon.aplicacionmovil.entidad.Usuario;
-import com.example.salomon.aplicacionmovil.sqlite.DAOException;
-import com.example.salomon.aplicacionmovil.sqlite.DBHelper;
-import com.example.salomon.aplicacionmovil.sqlite.DataSource;
-import com.example.salomon.aplicacionmovil.sqlite.Entidad;
+import com.example.salomon.aplicacionmovil.data.model.Usuario;
+import com.example.salomon.aplicacionmovil.data.SQLite.DAOException;
+import com.example.salomon.aplicacionmovil.data.SQLite.DBHelper;
+import com.example.salomon.aplicacionmovil.data.SQLite.DataSource;
+import com.example.salomon.aplicacionmovil.data.SQLite.Entidad;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Salomon on 18/11/2017.

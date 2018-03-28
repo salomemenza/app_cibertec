@@ -3,6 +3,7 @@ package com.example.salomon.aplicacionmovil.view.activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,9 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.salomon.aplicacionmovil.data.SQLite.DataBaseClient;
+import com.example.salomon.aplicacionmovil.data.SQLite.DataBaseService;
+import com.example.salomon.aplicacionmovil.interactor.LoginInteractor;
 import com.example.salomon.aplicacionmovil.presenter.LoginPresenter;
 import com.example.salomon.aplicacionmovil.presenter.LoginPresenterImpl;
 import com.example.salomon.aplicacionmovil.presenter.LoginView;
@@ -22,7 +26,7 @@ import com.example.salomon.aplicacionmovil.UsuariosActivity;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity implements LoginView {
+public class LoginActivity extends BaseActivity implements LoginPresenter.View {
     private static final String TAG = "Login";
 
     @BindView(R.id.login_btn_inicio) Button btnIniciar;
@@ -33,27 +37,30 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @BindView(R.id.login_lyt_password) TextInputLayout lytPassword;
     @BindView(R.id.chkRecordar) CheckBox chkRecordar;
 
-    private LoginPresenter presenter;
+    private LoginPresenter loginPresenter;
     private ProgressDialog mensajeBuilder;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         constructObject();
 
-        presenter = new LoginPresenterImpl(this);
-        presenter.obtenerRecuerdo();
+        /*presenter = new LoginPresenterImpl(this);
+        presenter.obtenerRecuerdo();*/
+        loginPresenter = new LoginPresenter(new LoginInteractor(new DataBaseClient(getApplicationContext())));
+        loginPresenter.setView(this);
     }
 
     @OnClick(R.id.login_btn_inicio)
     public void onLoginClick(View view) {
-        presenter.validateCredentials(txtUsuario.getText().toString(), txtPassword.getText().toString());
+        loginPresenter.validateCredentials(txtUsuario.getText().toString(), txtPassword.getText().toString());
     }
 
     @OnClick(R.id.login_lbl_registrar)
     public void onRegistrarClick(View view) {
-        presenter.openRegister();
+        loginPresenter.validateCredentials(txtUsuario.getText().toString(), txtPassword.getText().toString());
+        //loginPresenter.openRegister();
     }
 
     private void constructObject(){
@@ -94,7 +101,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public void rememberUser() {
-        presenter.recordarUsuario(chkRecordar.isChecked(),txtUsuario.getText().toString());
+        loginPresenter.recordarUsuario(chkRecordar.isChecked(),txtUsuario.getText().toString());
     }
 
     @Override
@@ -119,6 +126,11 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public Context obtenetContexto() {
+        return getApplicationContext();
+    }
+
+    @Override
+    public Context context() {
         return getApplicationContext();
     }
 }

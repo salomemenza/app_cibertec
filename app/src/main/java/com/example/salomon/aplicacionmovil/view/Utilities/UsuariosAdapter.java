@@ -1,9 +1,7 @@
-package com.example.salomon.aplicacionmovil.Utilities;
+package com.example.salomon.aplicacionmovil.view.Utilities;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
-import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
@@ -16,11 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.salomon.aplicacionmovil.R;
-import com.example.salomon.aplicacionmovil.entidad.Usuario;
-import com.example.salomon.aplicacionmovil.helper.FlipAnimator;
+import com.example.salomon.aplicacionmovil.data.model.Usuario;
+import com.example.salomon.aplicacionmovil.view.helper.FlipAnimator;
 
 import java.util.ArrayList;
 import java.util.List;

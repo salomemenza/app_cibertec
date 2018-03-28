@@ -1,4 +1,4 @@
-package com.example.salomon.aplicacionmovil.Utilities;
+package com.example.salomon.aplicacionmovil.view.Utilities;
 
 import android.content.Context;
 import android.content.res.Resources;

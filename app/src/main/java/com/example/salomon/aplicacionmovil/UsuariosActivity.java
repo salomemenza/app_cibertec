@@ -16,10 +16,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.salomon.aplicacionmovil.DAO.UsuarioDAO;
-import com.example.salomon.aplicacionmovil.Utilities.MyDividerItemDecoration;
-import com.example.salomon.aplicacionmovil.Utilities.UsuariosAdapter;
-import com.example.salomon.aplicacionmovil.entidad.Usuario;
+import com.example.salomon.aplicacionmovil.data.DAO.UsuarioDAO;
+import com.example.salomon.aplicacionmovil.view.Utilities.MyDividerItemDecoration;
+import com.example.salomon.aplicacionmovil.view.Utilities.UsuariosAdapter;
+import com.example.salomon.aplicacionmovil.data.model.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;

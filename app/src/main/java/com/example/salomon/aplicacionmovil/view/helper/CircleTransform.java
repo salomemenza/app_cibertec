@@ -1,4 +1,4 @@
-package com.example.salomon.aplicacionmovil.helper;
+package com.example.salomon.aplicacionmovil.view.helper;
 
 import android.content.Context;
 import android.graphics.Bitmap;

@@ -1,4 +1,4 @@
-package com.example.salomon.aplicacionmovil.sqlite;
+package com.example.salomon.aplicacionmovil.data.SQLite;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

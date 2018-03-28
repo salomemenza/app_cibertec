@@ -1,14 +1,12 @@
-package com.example.salomon.aplicacionmovil.sqlite;
+package com.example.salomon.aplicacionmovil.data.room;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
-import com.example.salomon.aplicacionmovil.DAO.Recordar;
-import com.example.salomon.aplicacionmovil.DAO.UsuarioDaoR;
-import com.example.salomon.aplicacionmovil.entidad.RecordarEntidad;
-import com.example.salomon.aplicacionmovil.entidad.UsuarioR;
+import com.example.salomon.aplicacionmovil.data.model.RecordarEntidad;
+import com.example.salomon.aplicacionmovil.data.model.UsuarioR;
 
 /**
  * Created by desarrollo6 on 19/02/2018.

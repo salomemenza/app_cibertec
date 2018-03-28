@@ -13,8 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.salomon.aplicacionmovil.R;
-import com.example.salomon.aplicacionmovil.entidad.UsuarioR;
-import com.example.salomon.aplicacionmovil.sqlite.RoomDataBase;
+import com.example.salomon.aplicacionmovil.data.model.UsuarioR;
+import com.example.salomon.aplicacionmovil.data.room.RoomDataBase;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package com.example.salomon.aplicacionmovil.Utilities;
+package com.example.salomon.aplicacionmovil.view.Utilities;
 
 /**
  * Created by Salomon on 22/11/2017.

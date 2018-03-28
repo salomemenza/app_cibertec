@@ -1,14 +1,11 @@
-package com.example.salomon.aplicacionmovil.DAO;
+package com.example.salomon.aplicacionmovil.data.room;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
-import android.arch.persistence.room.Update;
 
-import com.example.salomon.aplicacionmovil.entidad.RecordarEntidad;
-import com.example.salomon.aplicacionmovil.entidad.UsuarioR;
+import com.example.salomon.aplicacionmovil.data.model.RecordarEntidad;
 
 import java.util.List;
 

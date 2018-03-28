@@ -1,4 +1,4 @@
-package com.example.salomon.aplicacionmovil.entidad;
+package com.example.salomon.aplicacionmovil.data.model;
 
 /**
  * Created by Salomon on 18/11/2017.

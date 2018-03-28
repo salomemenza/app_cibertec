@@ -1,4 +1,4 @@
-package com.example.salomon.aplicacionmovil.sqlite;
+package com.example.salomon.aplicacionmovil.data.SQLite;
 
 /**
  * Created by Salomon on 18/11/2017.

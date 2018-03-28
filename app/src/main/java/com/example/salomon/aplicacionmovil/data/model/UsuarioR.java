@@ -1,4 +1,4 @@
-package com.example.salomon.aplicacionmovil.entidad;
+package com.example.salomon.aplicacionmovil.data.model;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;

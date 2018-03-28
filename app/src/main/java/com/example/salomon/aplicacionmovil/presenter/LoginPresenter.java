@@ -1,8 +1,9 @@
 package com.example.salomon.aplicacionmovil.presenter;
 
 import android.content.Context;
+import android.util.Log;
 
-import com.example.salomon.aplicacionmovil.MVP.LoginInteractor;
+import com.example.salomon.aplicacionmovil.interactor.LoginInteractor;
 
 /**
  * Created by desarrollo6 on 13/03/2018.
@@ -24,8 +25,8 @@ public class LoginPresenter extends Presenter<LoginPresenter.View> {
         if (getView() != null) {
             getView().showProgress();
         }
-
-        loginInteractor.login(username, password, this);
+        Log.i("LOGIN: ","Validacion de credenciales");
+        loginInteractor.login(username, password);
     }
 
     public void openRegister() {
@@ -33,17 +34,18 @@ public class LoginPresenter extends Presenter<LoginPresenter.View> {
     }
 
     public void recordarUsuario(boolean recordar, String username) {
-        loginInteractor.recordarUsuario(recordar,username,this);
+        //loginInteractor.recordarUsuario(recordar,username,this);
     }
 
     public void obtenerRecuerdo() {
-        loginInteractor.getUserRemenber(this);
+        //loginInteractor.getUserRemenber(this);
     }
 
     @Override public void terminate() {
         super.terminate();
         setView(null);
     }
+
     public void onUsernameError() {
         if (getView() != null) {
             getView().setUsernameError();

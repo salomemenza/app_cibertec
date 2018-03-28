@@ -13,12 +13,11 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.example.salomon.aplicacionmovil.DAO.UsuarioDAO;
-import com.example.salomon.aplicacionmovil.Utilities.StringWithTag;
-import com.example.salomon.aplicacionmovil.entidad.Usuario;
+import com.example.salomon.aplicacionmovil.data.DAO.UsuarioDAO;
+import com.example.salomon.aplicacionmovil.view.Utilities.StringWithTag;
+import com.example.salomon.aplicacionmovil.data.model.Usuario;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
