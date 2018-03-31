@@ -3,6 +3,7 @@ package com.example.salomon.aplicacionmovil.view.activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.os.Bundle;
@@ -13,12 +14,8 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.salomon.aplicacionmovil.data.SQLite.DataBaseClient;
-import com.example.salomon.aplicacionmovil.data.SQLite.DataBaseService;
 import com.example.salomon.aplicacionmovil.interactor.LoginInteractor;
 import com.example.salomon.aplicacionmovil.presenter.LoginPresenter;
-import com.example.salomon.aplicacionmovil.presenter.LoginPresenterImpl;
-import com.example.salomon.aplicacionmovil.presenter.LoginView;
 import com.example.salomon.aplicacionmovil.R;
 import com.example.salomon.aplicacionmovil.RegistrarActivity;
 import com.example.salomon.aplicacionmovil.UsuariosActivity;
@@ -46,10 +43,10 @@ public class LoginActivity extends BaseActivity implements LoginPresenter.View {
         setContentView(R.layout.activity_login);
         constructObject();
 
-        /*presenter = new LoginPresenterImpl(this);
-        presenter.obtenerRecuerdo();*/
-        loginPresenter = new LoginPresenter(new LoginInteractor(new DataBaseClient(getApplicationContext())));
+        loginPresenter = new LoginPresenter(new LoginInteractor(getApplicationContext()));
         loginPresenter.setView(this);
+
+        loginPresenter.obtenerRecuerdo();
     }
 
     @OnClick(R.id.login_btn_inicio)
@@ -59,8 +56,7 @@ public class LoginActivity extends BaseActivity implements LoginPresenter.View {
 
     @OnClick(R.id.login_lbl_registrar)
     public void onRegistrarClick(View view) {
-        loginPresenter.validateCredentials(txtUsuario.getText().toString(), txtPassword.getText().toString());
-        //loginPresenter.openRegister();
+        loginPresenter.openRegister();
     }
 
     private void constructObject(){

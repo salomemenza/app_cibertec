@@ -21,9 +21,10 @@ public class DataBaseClient implements DataBaseService {
     @Override
     public Observable<List<UsuarioR>> login(String username, String password) {
         Log.i("DATABASE_CLIENT: ","DataBase Observable");
-        RoomDataBase appDb = RoomDataBase.getAppDb(context);
+        /*RoomDataBase appDb = RoomDataBase.getAppDb(context);
         return appDb.getUserDao().getRecordByUser(username)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .observeOn(AndroidSchedulers.mainThread());*/
+        return null;
     }
 }

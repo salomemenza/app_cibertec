@@ -7,6 +7,7 @@ import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
+import com.example.salomon.aplicacionmovil.data.model.Usuario;
 import com.example.salomon.aplicacionmovil.data.model.UsuarioR;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public interface UsuarioDaoR {
     UsuarioR getSingleRecord(int id);
 
     @Query("SELECT * FROM UsuarioR WHERE login =:v_login")
-    Observable<List<UsuarioR>> getRecordByUser(String v_login);
+    UsuarioR getRecordByUser(String v_login);
 
     @Update (onConflict = OnConflictStrategy.REPLACE)
     void updateRecord(UsuarioR university);
