@@ -97,6 +97,28 @@ public class UsuarioLocalDataSource implements UsuarioDataSource {
     }
 
     @Override
+    public void insertUsuario(@NonNull final UsuarioR usuario, @NonNull final GetUsuarioCallback callback) {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                final Long lngUsuario = mUsuarioDao.insertOnlySingleRecord(usuario);
+
+                mAppExecutors.mainThread().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (lngUsuario != null) {
+                            callback.onUsuariosLoaded(usuario);
+                        } else {
+                            callback.onDataNotAvailable();
+                        }
+                    }
+                });
+            }
+        };
+        mAppExecutors.diskIO().execute(runnable);
+    }
+
+    @Override
     public void getUserRemember(@NonNull final GetRecordarCallback callback) {
         Runnable runnable = new Runnable() {
             @Override

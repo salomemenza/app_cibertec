@@ -1,5 +1,7 @@
 package com.example.salomon.aplicacionmovil.view.activity;
 
+import android.content.Context;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -15,14 +17,16 @@ import android.widget.Toast;
 import com.example.salomon.aplicacionmovil.R;
 import com.example.salomon.aplicacionmovil.data.model.UsuarioR;
 import com.example.salomon.aplicacionmovil.data.room.RoomDataBase;
+import com.example.salomon.aplicacionmovil.interactor.SplashInteractor;
+import com.example.salomon.aplicacionmovil.presenter.SplashPresenter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity implements SplashPresenter.View {
     private ArrayList<HashMap<String,String>> listaUsuario = new ArrayList<HashMap<String, String>>();
-
     private final String TAG = "splash";
+    private SplashPresenter splashPresenter;
 
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -34,9 +38,13 @@ public class SplashActivity extends AppCompatActivity {
     Thread splashTread;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        splashPresenter = new SplashPresenter(new SplashInteractor(getApplicationContext()));
+        splashPresenter.setView(this);
+
         StartAnimations();
         createUserDefault();
     }
@@ -86,39 +94,13 @@ public class SplashActivity extends AppCompatActivity {
         poblarLista("boss","123","Boss", "administrador","0");
 
         for(HashMap<String,String> map: listaUsuario){
-            String usuario = map.get("usuario");
-
-            /*UsuarioDAO usuarioModel = new UsuarioDAO(this);
-            Usuario objUsuario = usuarioModel.obtenerByUser(usuario);*/
-
-            RoomDataBase appDb = RoomDataBase.getAppDb(getApplicationContext());
-            UsuarioR objUsuario = appDb.getUserDao().getRecordByUser(usuario);
-
-            if (objUsuario == null){
-
-                //RoomDataBase appDb = RoomDataBase.getAppDb(getApplicationContext());
-                UsuarioR UsuarioRoom = new UsuarioR();
-                UsuarioRoom.setLogin(usuario);
-                UsuarioRoom.setPassword(map.get("password"));
-                UsuarioRoom.setNombre(map.get("nombre"));
-                UsuarioRoom.setApellidoPaterno(map.get("paterno"));
-                UsuarioRoom.setSexo(Integer.parseInt(map.get("sexo")));
-
-                long userId = appDb.getUserDao().insertOnlySingleRecord(UsuarioRoom);
-                Toast.makeText(SplashActivity.this, "Se registro correctamente al usuario: "+userId , Toast.LENGTH_SHORT).show();
-
-                /*Usuario usuarioEntidad = new Usuario();
-                usuarioEntidad.setLogin(usuario);
-
-                usuarioEntidad.setLogin(usuario);
-                usuarioEntidad.setPassword(map.get("password"));
-                usuarioEntidad.setNombre(map.get("nombre"));
-                usuarioEntidad.setApellidoPaterno(map.get("paterno"));
-                usuarioEntidad.setSexo(Integer.parseInt(map.get("sexo")));
-
-                usuarioModel.insertar(usuarioEntidad);
-                Toast.makeText(SplashActivity.this, "Se registro correctamente al usuario: "+ usuario, Toast.LENGTH_SHORT).show();*/
-            }
+            UsuarioR usuarioRoom = new UsuarioR();
+            usuarioRoom.setLogin(map.get("usuario"));
+            usuarioRoom.setPassword(map.get("password"));
+            usuarioRoom.setNombre(map.get("nombre"));
+            usuarioRoom.setApellidoPaterno(map.get("paterno"));
+            usuarioRoom.setSexo(Integer.parseInt(map.get("sexo")));
+            splashPresenter.registrarUsuario(usuarioRoom);
         }
     }
 
@@ -131,5 +113,20 @@ public class SplashActivity extends AppCompatActivity {
         hmUsuario.put("nombre", nombre);
         hmUsuario.put("sexo",sexo);
         listaUsuario.add(hmUsuario);
+    }
+
+    @Override
+    public void showMessage(String mensaje) {
+        Toast.makeText(SplashActivity.this, mensaje, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public Context obtenetContexto() {
+        return getApplicationContext();
+    }
+
+    @Override
+    public Context context() {
+        return getApplicationContext();
     }
 }

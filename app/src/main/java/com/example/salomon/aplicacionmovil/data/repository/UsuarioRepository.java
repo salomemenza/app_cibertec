@@ -41,6 +41,21 @@ public class UsuarioRepository implements UsuarioDataSource {
     }
 
     @Override
+    public void insertUsuario(@NonNull final UsuarioR usuario, @NonNull final GetUsuarioCallback callback) {
+        mUsuarioDataSource.insertUsuario(usuario, new GetUsuarioCallback() {
+            @Override
+            public void onUsuariosLoaded(UsuarioR usuario) {
+                callback.onUsuariosLoaded(usuario);
+            }
+
+            @Override
+            public void onDataNotAvailable() {
+                callback.onDataNotAvailable();
+            }
+        });
+    }
+
+    @Override
     public void getUserRemember(@NonNull final GetRecordarCallback callback) {
         mUsuarioDataSource.getUserRemember(new GetRecordarCallback() {
             @Override

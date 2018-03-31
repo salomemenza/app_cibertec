@@ -22,7 +22,7 @@
             android:theme="@style/themeNoAction"></activity>
 
         <activity
-            android:name=".RegistrarActivity"
+            android:name=".view.activity.RegistrarActivity"
             android:label="@string/title_activity_registrar"
             android:parentActivityName=".view.activity.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">

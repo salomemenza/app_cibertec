@@ -26,6 +26,7 @@ public interface UsuarioDataSource {
 
     void getUsuarios(@NonNull LoadUsuariosCallback callback);
     void getUsuario(@NonNull String username, @NonNull GetUsuarioCallback callback);
+    void insertUsuario(@NonNull UsuarioR usuario, @NonNull GetUsuarioCallback callback);
 
     void getUserRemember(@NonNull GetRecordarCallback callback);
     void getUsuarioRecordarByName(@NonNull String username, @NonNull GetRecordarCallback callback);

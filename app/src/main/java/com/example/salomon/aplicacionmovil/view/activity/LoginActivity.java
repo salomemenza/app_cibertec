@@ -3,7 +3,6 @@ package com.example.salomon.aplicacionmovil.view.activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.os.Bundle;
@@ -17,7 +16,6 @@ import android.widget.Toast;
 import com.example.salomon.aplicacionmovil.interactor.LoginInteractor;
 import com.example.salomon.aplicacionmovil.presenter.LoginPresenter;
 import com.example.salomon.aplicacionmovil.R;
-import com.example.salomon.aplicacionmovil.RegistrarActivity;
 import com.example.salomon.aplicacionmovil.UsuariosActivity;
 
 import butterknife.BindView;
