@@ -18,7 +18,7 @@ public class SplashPresenter extends Presenter<SplashPresenter.View> implements 
 
     @Override
     public void onSuccessRegister(UsuarioR usuario) {
-        getView().showMessage("Se regsitró al usuario: "+ usuario.getNombre());
+        //getView().showMessage("Se regsitró al usuario: "+ usuario.getNombre());
     }
 
     @Override

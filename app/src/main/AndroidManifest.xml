@@ -12,15 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
         <activity
             android:name=".view.activity.LoginActivity"
-            android:theme="@style/themeNoAction"></activity>
-
+            android:theme="@style/themeNoAction" />
         <activity
             android:name=".view.activity.RegistrarActivity"
             android:label="@string/title_activity_registrar"
@@ -33,10 +31,6 @@
         <activity
             android:name=".view.activity.SplashActivity"
             android:theme="@style/themeNoAction">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".MenuDesignActivity"
@@ -48,15 +42,29 @@
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
-        </activity>
-        <activity android:name=".WelcomeActivity"
-            android:theme="@style/themeNoAction">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.salomon.aplicacionmovil.view.activity.MenuActivity" />
         </activity>
         <activity
+            android:name=".WelcomeActivity"
+            android:theme="@style/themeNoAction"></activity>
+        <activity
             android:name=".SolicitarMapaActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".MapaReturnActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MapaReturnActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".view.activity.MenuActivity"
+            android:label="@string/menu_title"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

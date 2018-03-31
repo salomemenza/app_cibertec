@@ -66,4 +66,32 @@
 
     <string name="google_maps_key">AIzaSyAe7tE9nxpJPy4pKBqaBYD3SWki7ViA4qk</string>
     <string name="login_lbl_recordar">Recordar Usuario</string>
+
+
+    <!-- Navigation Drawer menu labels -->
+    <string name="nav_home">Inicio</string>
+    <string name="nav_photos">Fotografias</string>
+    <string name="nav_movies">Videos</string>
+    <string name="nav_notifications">Notificaciones</string>
+    <string name="nav_settings">Configuración</string>
+    <string name="nav_others">Otras opciones</string>
+
+    <!-- Toolbar titles when navigation menu item is selected -->
+    <string-array name="nav_item_activity_titles">
+        <item>Inicio</item>
+        <item>Fotografias</item>
+        <item>Videos</item>
+        <item>Notificaciones</item>
+        <item>Configuración</item>
+    </string-array>
+
+    <string name="activity_title_user_admin">Administración de Usuarios</string>
+    <string name="activity_title_about_us">Acerca de</string>
+    <string name="action_logout">Cerrar Sesion</string>
+    <!--<string name="action_clear_all">Limpiar todo</string>
+    <string name="action_mark_all_read">Marcar todo como leido</string>-->
+
+    <string name="openDrawer">Abrir Menu</string>
+    <string name="closeDrawer">Cerrar Menu</string>
+    <string name="menu_title">Aplicación Movil</string>
 </resources>

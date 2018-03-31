@@ -100,8 +100,8 @@ public class LoginActivity extends BaseActivity implements LoginPresenter.View {
 
     @Override
     public void navigateToHome() {
-        //Intent i = new Intent(getApplicationContext(),MenuDesignActivity.class);
-        Intent i = new Intent(getApplicationContext(),UsuariosActivity.class);
+        Intent i = new Intent(getApplicationContext(),MenuActivity.class);
+        //Intent i = new Intent(getApplicationContext(),UsuariosActivity.class);
         startActivity(i);
         finish();
     }
