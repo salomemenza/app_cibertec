@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:mContext="com.example.salomon.aplicacionmovil.UsuariosActivity"
+    tools:mContext="com.example.salomon.aplicacionmovil.view.activity.UsuariosActivity"
     tools:showIn="@layout/activity_usuarios">
 
     <android.support.v4.widget.SwipeRefreshLayout

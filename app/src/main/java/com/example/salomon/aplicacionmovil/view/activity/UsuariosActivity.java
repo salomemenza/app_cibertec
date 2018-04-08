@@ -1,9 +1,8 @@
-package com.example.salomon.aplicacionmovil;
+package com.example.salomon.aplicacionmovil.view.activity;
 
 import android.app.SearchManager;
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -16,21 +15,26 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.salomon.aplicacionmovil.R;
 import com.example.salomon.aplicacionmovil.data.DAO.UsuarioDAO;
 import com.example.salomon.aplicacionmovil.view.Utilities.MyDividerItemDecoration;
-import com.example.salomon.aplicacionmovil.view.Utilities.UsuariosAdapter;
+import com.example.salomon.aplicacionmovil.view.adapter.UsuariosAdapter;
 import com.example.salomon.aplicacionmovil.data.model.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsuariosActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, UsuariosAdapter.UsuarioAdapterListener {
+import butterknife.BindView;
+
+public class UsuariosActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, UsuariosAdapter.UsuarioAdapterListener {
     private static final String TAG = UsuariosActivity.class.getSimpleName();
     private List<Usuario> usuarioList = new ArrayList<>();
-    private RecyclerView recyclerView;
-    private UsuariosAdapter mAdapter;
 
-    private SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.swipe_usuario) SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.swipe_usuario) RecyclerView recyclerView;
+    @BindView(R.id.toolbar) Toolbar toolbar ;
+
+    private UsuariosAdapter mAdapter;
     private ActionModeCallback actionModeCallback;
     private ActionMode actionMode;
 
@@ -40,15 +44,10 @@ public class UsuariosActivity extends AppCompatActivity implements SwipeRefreshL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuarios);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // toolbar fancy stuff
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.usuarios_activity_title);
-
-        recyclerView = (RecyclerView) findViewById(R.id.usuario_recycler_view);
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_usuario);
         swipeRefreshLayout.setOnRefreshListener(this);
 
         usuarioList = new ArrayList<>();
@@ -86,7 +85,6 @@ public class UsuariosActivity extends AppCompatActivity implements SwipeRefreshL
 
         swipeRefreshLayout.setRefreshing(false);
         mAdapter.notifyDataSetChanged();
-
     }
 
     @Override
@@ -96,8 +94,7 @@ public class UsuariosActivity extends AppCompatActivity implements SwipeRefreshL
 
         // Associate searchable configuration with the SearchView
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView = (SearchView) menu.findItem(R.id.action_search)
-                .getActionView();
+        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setMaxWidth(Integer.MAX_VALUE);
 
@@ -137,7 +134,7 @@ public class UsuariosActivity extends AppCompatActivity implements SwipeRefreshL
     }
 
     @Override
-        public void onBackPressed() {
+    public void onBackPressed() {
         // close search view on back button pressed
         /*if (!searchView.isIconified()) {
             searchView.setIconified(true);
@@ -248,8 +245,7 @@ public class UsuariosActivity extends AppCompatActivity implements SwipeRefreshL
 
     private void eliminarUsuarios() {
         mAdapter.resetAnimationIndex();
-        List<Integer> selectedItemPositions =
-                mAdapter.getSelectedItems();
+        List<Integer> selectedItemPositions = mAdapter.getSelectedItems();
         for (int i = selectedItemPositions.size() - 1; i >= 0; i--) {
             Integer key = selectedItemPositions.get(i);
 

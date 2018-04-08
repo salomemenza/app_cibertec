@@ -20,7 +20,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.salomon.aplicacionmovil.R;
-import com.example.salomon.aplicacionmovil.UsuariosActivity;
 import com.example.salomon.aplicacionmovil.view.fragment.HomeFragment;
 
 import butterknife.BindView;

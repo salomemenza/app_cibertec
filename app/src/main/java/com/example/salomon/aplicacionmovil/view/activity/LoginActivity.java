@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.example.salomon.aplicacionmovil.interactor.LoginInteractor;
 import com.example.salomon.aplicacionmovil.presenter.LoginPresenter;
 import com.example.salomon.aplicacionmovil.R;
-import com.example.salomon.aplicacionmovil.UsuariosActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;

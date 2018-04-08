@@ -36,7 +36,7 @@
             android:name=".MenuDesignActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".UsuariosActivity"
+            android:name=".view.activity.UsuariosActivity"
             android:label="@string/usuarios_activity_title"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

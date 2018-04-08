@@ -1,4 +1,4 @@
-package com.example.salomon.aplicacionmovil.view.Utilities;
+package com.example.salomon.aplicacionmovil.view.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -83,9 +83,7 @@ public class UsuariosAdapter extends RecyclerView.Adapter<UsuariosAdapter.MyView
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.usuario_list_row, parent, false);
-
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.usuario_list_row, parent, false);
         return new MyViewHolder(itemView);
     }
 
