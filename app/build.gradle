@@ -38,6 +38,11 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.6.2'
     // glide
     implementation 'com.github.bumptech.glide:glide:3.7.0'
+    //Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.0.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.3.1'
+
 
     implementation "android.arch.persistence.room:runtime:1.0.0"
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"

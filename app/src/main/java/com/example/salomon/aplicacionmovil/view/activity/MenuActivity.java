@@ -38,7 +38,7 @@ public class MenuActivity extends BaseActivity {
 
     // tags used to attach the fragments
     private static final String TAG_HOME = "Inicio";
-    private static final String TAG_PHOTOS = "Fotografias";
+    private static final String TAG_POKEDEX = "Pokedex Retrofit";
     private static final String TAG_MOVIES = "Videos";
     private static final String TAG_NOTIFICATIONS = "Notificaciones";
     private static final String TAG_SETTINGS = "Configuraciones";
@@ -199,10 +199,13 @@ public class MenuActivity extends BaseActivity {
                         navItemIndex = 0;
                         CURRENT_TAG = TAG_HOME;
                         break;
-                    case R.id.nav_photos:
-                        navItemIndex = 1;
-                        CURRENT_TAG = TAG_PHOTOS;
-                        break;
+                    case R.id.nav_pokedex:
+                        /*navItemIndex = 1;
+                        CURRENT_TAG = TAG_POKEDEX;
+                        break;*/
+                        startActivity(new Intent(MenuActivity.this, PokedexActivity.class));
+                        drawer.closeDrawers();
+                        return true;
                     case R.id.nav_movies:
                         navItemIndex = 2;
                         CURRENT_TAG = TAG_MOVIES;
@@ -221,10 +224,10 @@ public class MenuActivity extends BaseActivity {
                         drawer.closeDrawers();
                         return true;
                     case R.id.nav_about_us:
-                    // launch new intent instead of loading fragment
-                    //startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
-                    //drawer.closeDrawers();
-                    return true;
+                        // launch new intent instead of loading fragment
+                        //startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
+                        //drawer.closeDrawers();
+                        return true;
                     default:
                         navItemIndex = 0;
                 }

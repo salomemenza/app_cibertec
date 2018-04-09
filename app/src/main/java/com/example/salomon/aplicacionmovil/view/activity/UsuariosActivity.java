@@ -31,7 +31,7 @@ public class UsuariosActivity extends BaseActivity implements SwipeRefreshLayout
     private List<Usuario> usuarioList = new ArrayList<>();
 
     @BindView(R.id.swipe_usuario) SwipeRefreshLayout swipeRefreshLayout;
-    @BindView(R.id.swipe_usuario) RecyclerView recyclerView;
+    @BindView(R.id.usuario_recycler_view) RecyclerView recyclerView;
     @BindView(R.id.toolbar) Toolbar toolbar ;
 
     private UsuariosAdapter mAdapter;
