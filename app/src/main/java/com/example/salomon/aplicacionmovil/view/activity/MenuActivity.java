@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.salomon.aplicacionmovil.R;
 import com.example.salomon.aplicacionmovil.view.fragment.HomeFragment;
+import com.example.salomon.aplicacionmovil.view.fragment.PokedexFragment;
 
 import butterknife.BindView;
 
@@ -154,11 +155,11 @@ public class MenuActivity extends BaseActivity {
                 // home
                 HomeFragment homeFragment = new HomeFragment();
                 return homeFragment;
-            /*case 1:
+            case 1:
                 // photos
-                PhotosFragment photosFragment = new PhotosFragment();
-                return photosFragment;
-            case 2:
+                PokedexFragment pokedexFragment = new PokedexFragment();
+                return pokedexFragment;
+            /*case 2:
                 // movies fragment
                 MoviesFragment moviesFragment = new MoviesFragment();
                 return moviesFragment;
@@ -200,12 +201,12 @@ public class MenuActivity extends BaseActivity {
                         CURRENT_TAG = TAG_HOME;
                         break;
                     case R.id.nav_pokedex:
-                        /*navItemIndex = 1;
+                        navItemIndex = 1;
                         CURRENT_TAG = TAG_POKEDEX;
-                        break;*/
-                        startActivity(new Intent(MenuActivity.this, PokedexActivity.class));
+                        break;
+                        /*startActivity(new Intent(MenuActivity.this, PokedexActivity.class));
                         drawer.closeDrawers();
-                        return true;
+                        return true;*/
                     case R.id.nav_movies:
                         navItemIndex = 2;
                         CURRENT_TAG = TAG_MOVIES;
