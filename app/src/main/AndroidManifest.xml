@@ -30,7 +30,7 @@
         </activity>
         <activity
             android:name=".view.activity.SplashActivity"
-            android:theme="@style/themeNoAction"></activity>
+            android:theme="@style/themeNoAction" />
         <activity
             android:name=".MenuDesignActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -58,16 +58,23 @@
             android:name=".view.activity.MenuActivity"
             android:label="@string/menu_title"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
-        <activity android:name=".view.activity.PokedexActivity"
+        <activity
+            android:name=".view.activity.PokedexActivity"
             android:label="@string/pokedex_title">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.salomon.aplicacionmovil.view.activity.MenuActivity" />
+        </activity>
+        <activity android:name=".view.activity.PokemonActivity"
+            android:theme="@style/MyTheme.Detail"
+            android:label="@string/pokedex_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
