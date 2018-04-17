@@ -2,7 +2,9 @@ package com.example.salomon.aplicacionmovil.view.fragment;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,12 +14,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.salomon.aplicacionmovil.R;
 import com.example.salomon.aplicacionmovil.data.api.client.PokemonRespuesta;
 import com.example.salomon.aplicacionmovil.data.api.retrofit.PokemonRetrofitClient;
 import com.example.salomon.aplicacionmovil.data.api.retrofit.PokemonRetrofitService;
 import com.example.salomon.aplicacionmovil.data.model.Pokemon;
+import com.example.salomon.aplicacionmovil.view.Utilities.MyAlert;
+import com.example.salomon.aplicacionmovil.view.activity.PokemonActivity;
 import com.example.salomon.aplicacionmovil.view.adapter.ListaPokemonAdapter;
 
 import java.util.ArrayList;
@@ -27,7 +32,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class PokedexFragment extends Fragment {
+public class PokedexFragment extends Fragment implements ListaPokemonAdapter.PokemonAdapterListener {
 
     //@BindView(R.id.toolbar) Toolbar toolbar;
 
@@ -35,6 +40,8 @@ public class PokedexFragment extends Fragment {
     private RecyclerView recyclerView;
     private ListaPokemonAdapter listaPokemonAdapter;
     private ProgressDialog mensajeBuilder;
+    private MyAlert myAlert;
+
     private int offset;
     private boolean aptoParaCargar;
     private static final String TAG = "POKEDEX";
@@ -47,8 +54,6 @@ public class PokedexFragment extends Fragment {
     public static PokedexFragment newInstance(String param1, String param2) {
         PokedexFragment fragment = new PokedexFragment();
         Bundle args = new Bundle();
-        /*args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);*/
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,7 +62,8 @@ public class PokedexFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_pokedex);
-        //mensajeBuilder = new ProgressDialog(this);
+        mensajeBuilder = new ProgressDialog(getActivity().getApplicationContext());
+        myAlert = new MyAlert(getActivity());
     }
 
     @Override
@@ -72,7 +78,7 @@ public class PokedexFragment extends Fragment {
         Log.d("debugMode", "The application stopped after this");
         recyclerView.setLayoutManager(mLayoutManager);
 
-        listaPokemonAdapter = new ListaPokemonAdapter(this.getActivity().getApplicationContext());
+        listaPokemonAdapter = new ListaPokemonAdapter(this.getActivity().getApplicationContext(),this);
         recyclerView.setAdapter(listaPokemonAdapter);
         recyclerView.setHasFixedSize(true);
 
@@ -110,7 +116,7 @@ public class PokedexFragment extends Fragment {
     }
 
     private void obtenerDatos(int offset) {
-        //showProgress();
+        showProgress();
 
         PokemonRetrofitService pokemonService = mRetrofit.create(PokemonRetrofitService.class);
         Call<PokemonRespuesta> pokemonCall = pokemonService.obtenerListaPokemon(20, offset);
@@ -124,22 +130,26 @@ public class PokedexFragment extends Fragment {
                     ArrayList<Pokemon> listaPokemon = respuesta.getResults();
                     listaPokemonAdapter.adicionarListaPokemon(listaPokemon);
                 }else{
-                    Log.e(TAG, " onResponse: " + response.errorBody());
+                    myAlert.showErrorMessage(response.errorBody().toString());
+                    //Snackbar.make(getActivity().findViewById(R.id.lytPokedex),response.errorBody().toString(),Snackbar.LENGTH_LONG).show();
+                    //Log.e(TAG, " onResponse: " + response.errorBody());
                 }
-                //hideProgress();
+                hideProgress();
             }
 
             @Override
             public void onFailure(Call<PokemonRespuesta> call, Throwable t) {
-                //hideProgress();
+                hideProgress();
                 aptoParaCargar = true;
-                Log.e(TAG, " onFailure: " + t.getMessage());
+                //Log.e(TAG, " onFailure: " + t.getMessage());
+                myAlert.showErrorMessage(t.getMessage());
+                //Snackbar.make(getActivity().findViewById(R.id.lytPokedex),t.getMessage(),Snackbar.LENGTH_LONG).show();
             }
         });
     }
 
     public void showProgress() {
-        mensajeBuilder.setTitle("Enviando Información");
+        mensajeBuilder.setTitle("Obteniendo información del servidor");
         mensajeBuilder.setMessage("Por favor espere");
         mensajeBuilder.setCancelable(false);
         mensajeBuilder.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -150,4 +160,12 @@ public class PokedexFragment extends Fragment {
         mensajeBuilder.dismiss();
     }
 
+    @Override
+    public void onPokemonRowClicked(Pokemon pokemon) {
+        Intent i = new Intent(getActivity(),PokemonActivity.class);
+        i.putExtra("titulo", pokemon.getName());
+        i.putExtra("numero", String.format("%03d", pokemon.getNumber()));
+        Log.i(TAG,pokemon.getNumber().toString());
+        getActivity().startActivity(i);
+    }
 }

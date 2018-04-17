@@ -3,7 +3,11 @@
     package="com.example.salomon.aplicacionmovil">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_SMS" />
 
     <application
         android:allowBackup="true"
@@ -17,6 +21,19 @@
             android:value="@string/google_maps_key" />
 
         <activity
+            android:name=".view.activity.SplashActivity"
+            android:theme="@style/themeNoAction">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".view.activity.PermisosActivity"
+            android:theme="@style/themeNoAction">
+
+        </activity>
+        <activity
             android:name=".view.activity.LoginActivity"
             android:theme="@style/themeNoAction" />
         <activity
@@ -28,9 +45,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.salomon.aplicacionmovil.view.activity.LoginActivity" />
         </activity>
-        <activity
-            android:name=".view.activity.SplashActivity"
-            android:theme="@style/themeNoAction" />
         <activity
             android:name=".MenuDesignActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -57,25 +71,16 @@
         <activity
             android:name=".view.activity.MenuActivity"
             android:label="@string/menu_title"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".view.activity.PokedexActivity"
-            android:label="@string/pokedex_title">
+            android:name=".view.activity.PokemonActivity"
+            android:label="@string/pokedex_title"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.salomon.aplicacionmovil.view.activity.MenuActivity" />
         </activity>
-        <activity android:name=".view.activity.PokemonActivity"
-            android:theme="@style/MyTheme.Detail"
-            android:label="@string/pokedex_title">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

@@ -1,6 +1,8 @@
 package com.example.salomon.aplicacionmovil.view.activity;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.salomon.aplicacionmovil.R;
@@ -19,6 +22,7 @@ import com.example.salomon.aplicacionmovil.data.model.UsuarioR;
 import com.example.salomon.aplicacionmovil.data.room.RoomDataBase;
 import com.example.salomon.aplicacionmovil.interactor.SplashInteractor;
 import com.example.salomon.aplicacionmovil.presenter.SplashPresenter;
+import com.example.salomon.aplicacionmovil.view.helper.mySession;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +31,8 @@ public class SplashActivity extends AppCompatActivity implements SplashPresenter
     private ArrayList<HashMap<String,String>> listaUsuario = new ArrayList<HashMap<String, String>>();
     private final String TAG = "splash";
     private SplashPresenter splashPresenter;
+    private ProgressBar progressBar;
+    private boolean todosPermisos;
 
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -45,6 +51,10 @@ public class SplashActivity extends AppCompatActivity implements SplashPresenter
         splashPresenter = new SplashPresenter(new SplashInteractor(getApplicationContext()));
         splashPresenter.setView(this);
 
+        progressBar = findViewById(R.id.prbLoad);
+        progressBar.getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
+
+        todosPermisos = new mySession(this).verificarPermisos();
         StartAnimations();
         createUserDefault();
     }
@@ -68,14 +78,11 @@ public class SplashActivity extends AppCompatActivity implements SplashPresenter
                 try {
                     int waited = 0;
                     // Splash screen pause time
-                    while (waited < 2000) {
+                    while (waited < 3000) {
                         sleep(100);
                         waited += 100;
                     }
-                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    startActivity(intent);
-                    SplashActivity.this.finish();
+                    redireccionar();
                 } catch (InterruptedException e) {
                     // do nothing
                 } finally {
@@ -117,7 +124,7 @@ public class SplashActivity extends AppCompatActivity implements SplashPresenter
 
     @Override
     public void showMessage(String mensaje) {
-        Toast.makeText(SplashActivity.this, mensaje, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(SplashActivity.this, mensaje, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -128,5 +135,19 @@ public class SplashActivity extends AppCompatActivity implements SplashPresenter
     @Override
     public Context context() {
         return getApplicationContext();
+    }
+
+    private void redireccionar(){
+
+        if(todosPermisos){
+            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+            SplashActivity.this.finish();
+        }else{
+            Intent intent = new Intent(SplashActivity.this, PermisosActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }

@@ -19,7 +19,7 @@ android {
 }
 
 ext {
-    supportLibVersion = "25.3.1"
+    supportLibVersion = "26.1.0"
 }
 
 dependencies {
@@ -68,4 +68,5 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.x.x'
 
     implementation "com.android.support:palette-v7:${supportLibVersion}"
+    implementation "com.github.Shashank02051997:FancyAlertDialog-Android:0.1"
 }

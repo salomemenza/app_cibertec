@@ -96,7 +96,8 @@ public class MenuActivity extends BaseActivity {
 
         // Loading profile image
         Glide.with(this).load(R.drawable.profile)
-            .crossFade()
+                .asBitmap()
+            //.crossFade()
             .thumbnail(0.5f)
             //.bitmapTransform(new CircleTransform(this))
             .diskCacheStrategy(DiskCacheStrategy.ALL)

@@ -97,4 +97,6 @@
 
     <!--POKEDEX-->
     <string name="pokedex_title">Pokedex con Retrofit</string>
+    <string name="permisos_texto">Para el correcto funcionamiento de la aplicación, usted necesita proporcionar permisos para los siguientes accesos:</string>
+    <string name="permiso_boton">Conceder Permisos</string>
 </resources>
