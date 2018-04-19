@@ -3,11 +3,13 @@ package com.example.salomon.aplicacionmovil.view.helper;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.provider.Settings;
 
 import com.example.salomon.aplicacionmovil.R;
+import com.example.salomon.aplicacionmovil.view.activity.PermisosActivity;
 import com.example.salomon.aplicacionmovil.view.activity.SplashActivity;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -22,30 +24,51 @@ import com.shashank.sony.fancydialoglib.Icon;
 import java.util.List;
 
 public class mySession {
-    private boolean permiso;
     private Activity mActivity;
+    private SessionListener mSessionListener;
 
     public mySession(Activity activity){
         this.mActivity = activity;
     }
 
-    public boolean verificarPermisos(){
-        Dexter.withActivity(mActivity)
+    public mySession(Activity activity, SessionListener sessionListener){
+        this.mActivity = activity;
+        this.mSessionListener = sessionListener;
+    }
+
+    public void verificarPermisos(){
+        String permisoLocation = android.Manifest.permission.ACCESS_FINE_LOCATION;
+        String permisoTelefono = android.Manifest.permission.CALL_PHONE;
+        String permisoCamara = android.Manifest.permission.CAMERA;
+        String permisoMensaje = android.Manifest.permission.READ_SMS;
+
+        int resLocation = mActivity.getApplicationContext().checkCallingOrSelfPermission(permisoLocation);
+        int resTelefono = mActivity.getApplicationContext().checkCallingOrSelfPermission(permisoTelefono);
+        int resCamara = mActivity.getApplicationContext().checkCallingOrSelfPermission(permisoCamara);
+        int resMensaje = mActivity.getApplicationContext().checkCallingOrSelfPermission(permisoMensaje);
+
+
+        if(resLocation == PackageManager.PERMISSION_GRANTED && resTelefono == PackageManager.PERMISSION_GRANTED &&
+                resCamara == PackageManager.PERMISSION_GRANTED && resMensaje == PackageManager.PERMISSION_GRANTED){
+        }else{
+            mSessionListener.onDenied();
+        }
+
+        /*Dexter.withActivity(mActivity)
                 .withPermissions(
                         Manifest.permission.ACCESS_FINE_LOCATION,
                         Manifest.permission.CALL_PHONE,
                         Manifest.permission.CAMERA,
                         Manifest.permission.READ_SMS)
                 .withListener(new MultiplePermissionsListener(){
-
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
                         if(report.areAllPermissionsGranted()){
-                            permiso = true;
+
                         }
 
                         if(report.isAnyPermissionPermanentlyDenied()){
-                            permiso = false;
+
                         }
                     }
 
@@ -53,9 +76,9 @@ public class mySession {
                     public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
                         token.continuePermissionRequest();
                     }
-                }).onSameThread();
-
-        return permiso;
+                })
+                .onSameThread()
+                .check();*/
     }
 
     private void showSettingsDialog() {
@@ -121,4 +144,7 @@ public class mySession {
                 .check();
     }
 
+    public interface SessionListener{
+        void onDenied();
+    }
 }

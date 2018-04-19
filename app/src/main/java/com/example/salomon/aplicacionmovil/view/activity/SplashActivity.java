@@ -27,12 +27,13 @@ import com.example.salomon.aplicacionmovil.view.helper.mySession;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class SplashActivity extends AppCompatActivity implements SplashPresenter.View {
+public class SplashActivity extends AppCompatActivity implements SplashPresenter.View, mySession.SessionListener {
     private ArrayList<HashMap<String,String>> listaUsuario = new ArrayList<HashMap<String, String>>();
     private final String TAG = "splash";
     private SplashPresenter splashPresenter;
     private ProgressBar progressBar;
-    private boolean todosPermisos;
+    private boolean todosPermisos = true;
+    private mySession session;
 
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -54,9 +55,15 @@ public class SplashActivity extends AppCompatActivity implements SplashPresenter
         progressBar = findViewById(R.id.prbLoad);
         progressBar.getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
 
-        todosPermisos = new mySession(this).verificarPermisos();
+        session = new mySession(this,this);
         StartAnimations();
         createUserDefault();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        todosPermisos = true;
     }
 
     private void StartAnimations() {
@@ -82,7 +89,14 @@ public class SplashActivity extends AppCompatActivity implements SplashPresenter
                         sleep(100);
                         waited += 100;
                     }
-                    redireccionar();
+
+                    session.verificarPermisos();
+                    if(todosPermisos){
+                        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(intent);
+                        SplashActivity.this.finish();
+                    }
                 } catch (InterruptedException e) {
                     // do nothing
                 } finally {
@@ -137,17 +151,11 @@ public class SplashActivity extends AppCompatActivity implements SplashPresenter
         return getApplicationContext();
     }
 
-    private void redireccionar(){
-
-        if(todosPermisos){
-            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            startActivity(intent);
-            SplashActivity.this.finish();
-        }else{
-            Intent intent = new Intent(SplashActivity.this, PermisosActivity.class);
-            startActivity(intent);
-            finish();
-        }
+    @Override
+    public void onDenied() {
+        todosPermisos = false;
+        Intent intent = new Intent(SplashActivity.this, PermisosActivity.class);
+        startActivity(intent);
+        SplashActivity.this.finish();
     }
 }

@@ -16,11 +16,12 @@ import android.widget.Toast;
 import com.example.salomon.aplicacionmovil.interactor.LoginInteractor;
 import com.example.salomon.aplicacionmovil.presenter.LoginPresenter;
 import com.example.salomon.aplicacionmovil.R;
+import com.example.salomon.aplicacionmovil.view.helper.mySession;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity implements LoginPresenter.View {
+public class LoginActivity extends BaseActivity implements LoginPresenter.View, mySession.SessionListener {
     private static final String TAG = "Login";
 
     @BindView(R.id.login_btn_inicio) Button btnIniciar;
@@ -33,17 +34,25 @@ public class LoginActivity extends BaseActivity implements LoginPresenter.View {
 
     private LoginPresenter loginPresenter;
     private ProgressDialog mensajeBuilder;
+    private mySession session;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         constructObject();
+        session = new mySession(this,this);
 
         loginPresenter = new LoginPresenter(new LoginInteractor(getApplicationContext()));
         loginPresenter.setView(this);
 
         loginPresenter.obtenerRecuerdo();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        session.verificarPermisos();
     }
 
     @OnClick(R.id.login_btn_inicio)
@@ -125,5 +134,12 @@ public class LoginActivity extends BaseActivity implements LoginPresenter.View {
     @Override
     public Context context() {
         return getApplicationContext();
+    }
+
+    @Override
+    public void onDenied() {
+        Intent intent = new Intent(LoginActivity.this, PermisosActivity.class);
+        startActivity(intent);
+        LoginActivity.this.finish();
     }
 }
